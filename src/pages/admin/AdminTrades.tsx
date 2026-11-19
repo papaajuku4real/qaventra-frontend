@@ -399,7 +399,7 @@ function EditTradeModal({
         onClick={e => e.stopPropagation()}
         style={{
           width: '100%', maxWidth: 460,
-          background: 'hsl(260 80% 6%)',
+          background: 'hsl(20 12% 6%)',
           border: '1px solid rgba(255,255,255,0.1)',
           borderRadius: 18, padding: 24,
           boxShadow: '0 24px 64px rgba(0,0,0,0.6)',

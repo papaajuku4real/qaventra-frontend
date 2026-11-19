@@ -33,15 +33,15 @@ const PAIR_META: Record<string, { pair: string; name: string; color: string }> =
   PEPEUSDT:  { pair: 'PEPE/USDT',  name: 'Pepe',          color: '#4caf50' },
 
   // ── Forex ──
-  EURUSD:    { pair: 'EUR/USD',    name: 'Euro',                  color: '#1e3a8a' },
+  EURUSD:    { pair: 'EUR/USD',    name: 'Euro',                  color: '#7c2d12' },
   GBPUSD:    { pair: 'GBP/USD',    name: 'British Pound',         color: '#7c3aed' },
   USDJPY:    { pair: 'USD/JPY',    name: 'Japanese Yen',          color: '#dc2626' },
   AUDUSD:    { pair: 'AUD/USD',    name: 'Australian Dollar',     color: '#059669' },
   USDCAD:    { pair: 'USD/CAD',    name: 'Canadian Dollar',       color: '#dc2626' },
   USDCHF:    { pair: 'USD/CHF',    name: 'Swiss Franc',           color: '#e11d48' },
   NZDUSD:    { pair: 'NZD/USD',    name: 'NZ Dollar',             color: '#0284c7' },
-  EURGBP:    { pair: 'EUR/GBP',    name: 'Euro / GBP',            color: '#1e3a8a' },
-  EURJPY:    { pair: 'EUR/JPY',    name: 'Euro / Yen',            color: '#1e3a8a' },
+  EURGBP:    { pair: 'EUR/GBP',    name: 'Euro / GBP',            color: '#7c2d12' },
+  EURJPY:    { pair: 'EUR/JPY',    name: 'Euro / Yen',            color: '#7c2d12' },
   GBPJPY:    { pair: 'GBP/JPY',    name: 'GBP / Yen',             color: '#7c3aed' },
   AUDJPY:    { pair: 'AUD/JPY',    name: 'AUD / Yen',             color: '#059669' },
   AUDCAD:    { pair: 'AUD/CAD',    name: 'AUD / CAD',             color: '#059669' },
@@ -63,7 +63,7 @@ const PAIR_META: Record<string, { pair: string; name: string; color: string }> =
   XAGUSD:    { pair: 'XAG/USD',    name: 'Silver',                color: '#cbd5e1' },
   WTIUSD:    { pair: 'WTI/USD',    name: 'WTI Crude Oil',         color: '#44403c' },
   BRENT:     { pair: 'BRENT',      name: 'Brent Crude Oil',       color: '#292524' },
-  NATGAS:    { pair: 'NATGAS',     name: 'Natural Gas',           color: '#60a5fa' },
+  NATGAS:    { pair: 'NATGAS',     name: 'Natural Gas',           color: '#fb923c' },
 }
 
 // Order for the pair dropdown — most-popular-first
@@ -326,7 +326,7 @@ export function TradeDetail() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'hsl(260 87% 3%)' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: 'hsl(20 12% 3%)' }}>
       <style>{`
         @media (max-width: 767px) {
           .trade-body   { flex-direction: column !important; overflow: visible !important; }
@@ -343,7 +343,7 @@ export function TradeDetail() {
       <div className="trade-header-row" style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '12px 16px',
-        background: 'hsl(260 87% 4%)',
+        background: 'hsl(20 12% 4%)',
         borderBottom: '1px solid rgba(255,255,255,0.07)',
         flexShrink: 0, flexWrap: 'wrap', gap: 10,
       }}>
@@ -436,14 +436,14 @@ export function TradeDetail() {
         <div className="trade-chart" style={{
           flex: 1, position: 'relative', minWidth: 0,
           borderRight: '1px solid rgba(255,255,255,0.07)',
-          background: '#131722', minHeight: 480,
+          background: '#161311', minHeight: 480,
           display: 'flex', flexDirection: 'column',
         }}>
           {/* Chart toolbar — chart mode (left) + currency pair (middle) */}
           <div style={{
             display: 'flex', alignItems: 'center', gap: 10,
             padding: '10px 12px',
-            background: 'hsl(260 87% 4%)',
+            background: 'hsl(20 12% 4%)',
             borderBottom: '1px solid rgba(255,255,255,0.07)',
             flexShrink: 0,
           }}>
@@ -466,7 +466,7 @@ export function TradeDetail() {
               {modeOpen && (
                 <div style={{
                   position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 50,
-                  background: 'hsl(260 60% 6%)',
+                  background: 'hsl(20 12% 6%)',
                   border: '1px solid rgba(255,255,255,0.1)',
                   borderRadius: 10, padding: 4, minWidth: 140,
                   boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
@@ -513,7 +513,7 @@ export function TradeDetail() {
               {pairOpen && (
                 <div style={{
                   position: 'absolute', top: 'calc(100% + 4px)', left: 0, zIndex: 50,
-                  background: 'hsl(260 60% 6%)',
+                  background: 'hsl(20 12% 6%)',
                   border: '1px solid rgba(255,255,255,0.1)',
                   borderRadius: 10, padding: 4, minWidth: 200, maxHeight: 360, overflowY: 'auto',
                   boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
@@ -562,7 +562,7 @@ export function TradeDetail() {
         {/* ── Manual Trading Panel ── */}
         <div className="trade-panel" style={{
           width: 340, flexShrink: 0, overflowY: 'auto',
-          background: 'hsl(260 87% 4%)',
+          background: 'hsl(20 12% 4%)',
           padding: '24px 20px',
           scrollbarWidth: 'thin',
           scrollbarColor: 'rgba(255,255,255,0.08) transparent',
@@ -732,7 +732,7 @@ export function TradeDetail() {
                 }}
               >
                 {DURATIONS.map(d => (
-                  <option key={d} value={d} style={{ background: 'hsl(260 87% 6%)' }}>{d}</option>
+                  <option key={d} value={d} style={{ background: 'hsl(20 12% 6%)' }}>{d}</option>
                 ))}
               </select>
               <ChevronDown size={14} style={{
@@ -836,7 +836,7 @@ export function TradeDetail() {
       <div style={{
         display: 'flex', alignItems: 'stretch', justifyContent: 'space-around',
         borderTop: '1px solid rgba(255,255,255,0.07)',
-        background: 'hsl(260 87% 4%)',
+        background: 'hsl(20 12% 4%)',
         padding: '8px 4px 10px',
         flexShrink: 0,
       }}>

@@ -9,7 +9,7 @@ const BIO_MAX = 160
 
 function SettingsCard({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
-    <div style={{ background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px', marginBottom: 20 }}>
+    <div style={{ background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: '24px', marginBottom: 20 }}>
       <div style={{ marginBottom: 20 }}>
         <p style={{ fontSize: 14, fontWeight: 700, color: 'hsl(40 10% 94%)', marginBottom: 3 }}>{title}</p>
         {sub && <p style={{ fontSize: 12, color: 'hsl(240 5% 52%)' }}>{sub}</p>}
@@ -140,9 +140,9 @@ export function ProfileSettings() {
   }
 
   const THEMES = [
-    { id: 'dark',    label: 'Dark',    color: '#0d0b1e' },
-    { id: 'darker',  label: 'Darker',  color: '#060410' },
-    { id: 'purple',  label: 'Purple',  color: '#1a0d2e' },
+    { id: 'dark',    label: 'Dark',    color: '#100d0b' },
+    { id: 'darker',  label: 'Darker',  color: '#0a0806' },
+    { id: 'purple',  label: 'Purple',  color: '#1c1410' },
   ]
 
   const initials = `${form.firstName.trim()[0] ?? ''}${form.lastName.trim()[0] ?? ''}`.toUpperCase()
@@ -177,7 +177,7 @@ export function ProfileSettings() {
           <div style={{ position: 'relative', flexShrink: 0 }}>
             <div style={{
               width: 80, height: 80, borderRadius: '50%', overflow: 'hidden',
-              background: photo ? 'rgba(255,255,255,0.04)' : 'linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%)',
+              background: photo ? 'rgba(255,255,255,0.04)' : 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               fontSize: 28, fontWeight: 800, color: '#050505',
             }}>
@@ -192,18 +192,18 @@ export function ProfileSettings() {
               style={{
                 position: 'absolute', bottom: 0, right: 0,
                 width: 26, height: 26, borderRadius: '50%',
-                background: 'hsl(222 87% 8%)', border: '2px solid hsl(222 87% 5%)',
+                background: 'hsl(20 12% 8%)', border: '2px solid hsl(20 12% 5%)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 cursor: avatarBusy ? 'default' : 'pointer',
               }}>
-              {avatarBusy ? <Loader2 size={12} className="animate-spin" style={{ color: '#93c5fd' }} /> : <Camera size={12} style={{ color: '#93c5fd' }} />}
+              {avatarBusy ? <Loader2 size={12} className="animate-spin" style={{ color: '#fdba74' }} /> : <Camera size={12} style={{ color: '#fdba74' }} />}
             </button>
           </div>
           <div>
             <p style={{ fontSize: 13, color: 'hsl(40 6% 85%)', marginBottom: 6 }}>Upload a new avatar</p>
             <p style={{ fontSize: 11, color: 'hsl(240 5% 48%)', marginBottom: 12 }}>JPG, PNG or WebP. Max size 2MB.</p>
             <div style={{ display: 'flex', gap: 8 }}>
-              <button onClick={() => fileRef.current?.click()} disabled={avatarBusy} style={{ fontSize: 12, fontWeight: 600, padding: '7px 16px', borderRadius: 8, background: 'rgba(96,165,250,0.2)', border: '1px solid rgba(96,165,250,0.3)', color: '#93c5fd', cursor: avatarBusy ? 'default' : 'pointer', opacity: avatarBusy ? 0.6 : 1 }}>
+              <button onClick={() => fileRef.current?.click()} disabled={avatarBusy} style={{ fontSize: 12, fontWeight: 600, padding: '7px 16px', borderRadius: 8, background: 'rgba(251,146,60,0.2)', border: '1px solid rgba(251,146,60,0.3)', color: '#fdba74', cursor: avatarBusy ? 'default' : 'pointer', opacity: avatarBusy ? 0.6 : 1 }}>
                 {avatarBusy ? 'Uploading…' : 'Upload Photo'}
               </button>
               {photo && (
@@ -278,13 +278,13 @@ export function ProfileSettings() {
               style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
                 padding: '14px 20px', borderRadius: 12, cursor: 'pointer',
-                border: theme === t.id ? '2px solid #60a5fa' : '2px solid rgba(255,255,255,0.07)',
-                background: theme === t.id ? 'rgba(96,165,250,0.08)' : 'rgba(255,255,255,0.02)',
+                border: theme === t.id ? '2px solid #fb923c' : '2px solid rgba(255,255,255,0.07)',
+                background: theme === t.id ? 'rgba(251,146,60,0.08)' : 'rgba(255,255,255,0.02)',
                 transition: 'all 0.15s',
               }}
             >
               <div style={{ width: 48, height: 32, borderRadius: 8, background: t.color, border: '1px solid rgba(255,255,255,0.1)' }} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: theme === t.id ? '#93c5fd' : 'hsl(240 5% 55%)' }}>{t.label}</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: theme === t.id ? '#fdba74' : 'hsl(240 5% 55%)' }}>{t.label}</span>
             </button>
           ))}
         </div>
@@ -294,7 +294,7 @@ export function ProfileSettings() {
       {error && <p style={{ fontSize: 12, color: '#f87171', textAlign: 'right', marginBottom: 10 }}>{error}</p>}
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 10 }}>
         <button onClick={() => navigate(-1)} style={{ padding: '10px 22px', borderRadius: 10, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', color: 'hsl(240 5% 55%)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>Cancel</button>
-        <button onClick={handleSave} disabled={saving} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '10px 22px', borderRadius: 10, background: saved ? 'rgba(96,165,250,0.15)' : 'linear-gradient(135deg,#2563eb,#1d4ed8)', border: saved ? '1px solid rgba(96,165,250,0.3)' : 'none', color: saved ? '#60a5fa' : '#fff', fontSize: 13, fontWeight: 700, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.7 : 1, transition: 'all 0.2s' }}>
+        <button onClick={handleSave} disabled={saving} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '10px 22px', borderRadius: 10, background: saved ? 'rgba(251,146,60,0.15)' : 'linear-gradient(135deg,#ea580c,#c2410c)', border: saved ? '1px solid rgba(251,146,60,0.3)' : 'none', color: saved ? '#fb923c' : '#fff', fontSize: 13, fontWeight: 700, cursor: saving ? 'default' : 'pointer', opacity: saving ? 0.7 : 1, transition: 'all 0.2s' }}>
           {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />} {saving ? 'Saving…' : saved ? 'Saved!' : 'Save Changes'}
         </button>
       </div>

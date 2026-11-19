@@ -309,7 +309,7 @@ export function TradingMarkets() {
             <div style={{
               height: '100%', borderRadius: 4,
               width: `${progress}%`,
-              background: 'linear-gradient(90deg, #a78bfa, #22d3ee)',
+              background: 'linear-gradient(90deg, #a78bfa, #ea580c)',
               transition: 'width 1s linear',
             }} />
           </div>
@@ -324,7 +324,7 @@ export function TradingMarkets() {
             sub: topGainer ? `+${topGainer.change.toFixed(2)}% today` : '',   color: '#a78bfa' },
           { label: 'Top Loser',        value: topLoser ? topLoser.symbol.replace('USDT','') : '—',
             sub: topLoser ? `${topLoser.change.toFixed(2)}% today` : '',      color: '#f87171' },
-          { label: '24h Total Volume', value: fmtVolume(totalVol),  sub: 'Across all pairs',   color: '#38bdf8' },
+          { label: '24h Total Volume', value: fmtVolume(totalVol),  sub: 'Across all pairs',   color: '#fb923c' },
         ].map(stat => (
           <div key={stat.label} style={{
             background: 'rgba(255,255,255,0.025)',

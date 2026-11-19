@@ -112,8 +112,8 @@ export function PropertyDetail() {
   }
 
   const allImages = [property.imageUrl, ...(property.gallery ?? [])].filter(Boolean) as string[]
-  const statusColor = property.status === 'AVAILABLE' ? '#60a5fa' : property.status === 'PENDING' ? '#f59e0b' : '#f87171'
-  const statusBg = property.status === 'AVAILABLE' ? 'rgba(96,165,250,0.12)' : property.status === 'PENDING' ? 'rgba(245,158,11,0.12)' : 'rgba(248,113,113,0.12)'
+  const statusColor = property.status === 'AVAILABLE' ? '#fb923c' : property.status === 'PENDING' ? '#f59e0b' : '#f87171'
+  const statusBg = property.status === 'AVAILABLE' ? 'rgba(251,146,60,0.12)' : property.status === 'PENDING' ? 'rgba(245,158,11,0.12)' : 'rgba(248,113,113,0.12)'
 
   const prevImg = () => setActiveImg(i => (i === 0 ? allImages.length - 1 : i - 1))
   const nextImg = () => setActiveImg(i => (i === allImages.length - 1 ? 0 : i + 1))
@@ -234,7 +234,7 @@ export function PropertyDetail() {
               style={{
                 flex: '0 0 auto', width: 80, height: 56,
                 borderRadius: 8, overflow: 'hidden',
-                border: activeImg === i ? '2px solid #60a5fa' : '2px solid transparent',
+                border: activeImg === i ? '2px solid #fb923c' : '2px solid transparent',
                 opacity: activeImg === i ? 1 : 0.5,
                 cursor: 'pointer', transition: 'all 0.15s',
               }}
@@ -256,8 +256,8 @@ export function PropertyDetail() {
             <div className="flex flex-wrap items-center gap-2 mb-2">
               <span style={{
                 fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: 6,
-                background: 'rgba(96,165,250,0.1)', color: '#93c5fd',
-                border: '1px solid rgba(96,165,250,0.2)',
+                background: 'rgba(251,146,60,0.1)', color: '#fdba74',
+                border: '1px solid rgba(251,146,60,0.2)',
               }}>
                 {displayType(property.type)}
               </span>
@@ -284,7 +284,7 @@ export function PropertyDetail() {
               </span>
             </div>
             <p style={{
-              fontSize: 28, fontWeight: 800, color: '#60a5fa',
+              fontSize: 28, fontWeight: 800, color: '#fb923c',
               letterSpacing: '-0.02em',
             }}>
               {fmt(property.price)}
@@ -304,7 +304,7 @@ export function PropertyDetail() {
           }}>
             {(property.beds ?? 0) > 0 && (
               <div className="flex items-center gap-2" style={{ minWidth: 90 }}>
-                <Bed size={16} style={{ color: '#60a5fa' }} />
+                <Bed size={16} style={{ color: '#fb923c' }} />
                 <div>
                   <p style={{ fontSize: 15, fontWeight: 700, color: 'hsl(40 6% 92%)' }}>{property.beds}</p>
                   <p style={{ fontSize: 10, color: 'hsl(240 5% 50%)' }}>Bedrooms</p>
@@ -312,7 +312,7 @@ export function PropertyDetail() {
               </div>
             )}
             <div className="flex items-center gap-2" style={{ minWidth: 90 }}>
-              <Bath size={16} style={{ color: '#38bdf8' }} />
+              <Bath size={16} style={{ color: '#fb923c' }} />
               <div>
                 <p style={{ fontSize: 15, fontWeight: 700, color: 'hsl(40 6% 92%)' }}>{property.baths ?? 0}</p>
                 <p style={{ fontSize: 10, color: 'hsl(240 5% 50%)' }}>Bathrooms</p>
@@ -363,10 +363,10 @@ export function PropertyDetail() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { label: 'Projected ROI', value: `${property.roi}%`, icon: TrendingUp, color: '#60a5fa' },
-                { label: 'Annual Yield', value: `${property.yieldPct ?? 0}%`, icon: BarChart3, color: '#38bdf8' },
+                { label: 'Projected ROI', value: `${property.roi}%`, icon: TrendingUp, color: '#fb923c' },
+                { label: 'Annual Yield', value: `${property.yieldPct ?? 0}%`, icon: BarChart3, color: '#fb923c' },
                 { label: 'Property Type', value: displayType(property.type), icon: Shield, color: '#f59e0b' },
-                { label: 'Investment Term', value: '12–36 mo', icon: Calendar, color: '#60a5fa' },
+                { label: 'Investment Term', value: '12–36 mo', icon: Calendar, color: '#fb923c' },
               ].map(h => (
                 <div key={h.label} style={{
                   display: 'flex', alignItems: 'center', gap: 10,
@@ -432,9 +432,9 @@ export function PropertyDetail() {
                 style={{
                   width: '100%', padding: '14px', borderRadius: 12,
                   fontSize: 14, fontWeight: 700,
-                  background: 'linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%)',
+                  background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)',
                   color: '#050505', border: 'none', cursor: 'pointer',
-                  boxShadow: '0 4px 24px rgba(96,165,250,0.25)',
+                  boxShadow: '0 4px 24px rgba(251,146,60,0.25)',
                   transition: 'all 0.2s',
                 }}
               >
@@ -476,7 +476,7 @@ export function PropertyDetail() {
             borderRadius: 16,
           }}>
             <div className="flex items-center gap-2 mb-3">
-              <Shield size={14} style={{ color: '#60a5fa' }} />
+              <Shield size={14} style={{ color: '#fb923c' }} />
               <p style={{ fontSize: 12, fontWeight: 600, color: 'hsl(40 6% 88%)' }}>Investor Protection</p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -488,7 +488,7 @@ export function PropertyDetail() {
                 'Dedicated investment advisor',
               ].map(item => (
                 <div key={item} className="flex items-center gap-2">
-                  <CheckCircle size={11} style={{ color: '#60a5fa', flexShrink: 0 }} />
+                  <CheckCircle size={11} style={{ color: '#fb923c', flexShrink: 0 }} />
                   <span style={{ fontSize: 12, color: 'hsl(240 5% 60%)' }}>{item}</span>
                 </div>
               ))}
