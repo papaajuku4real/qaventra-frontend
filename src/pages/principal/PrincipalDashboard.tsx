@@ -752,7 +752,7 @@ function PrincipalDashboardInner() {
                             value={nameInput}
                             onChange={e => setNameInput(e.target.value)}
                             onKeyDown={e => { if (e.key === 'Enter') applyName() }}
-                            placeholder="e.g. Velnex Capital"
+                            placeholder="e.g. Qaventra Markets"
                             maxLength={40}
                             style={{
                               flex: 1, height: 46, padding: '0 14px',
@@ -1393,7 +1393,7 @@ function PrincipalDashboardInner() {
                               value={emailInput}
                               onChange={e => { setEmailInput(e.target.value); setEmailError('') }}
                               onKeyDown={e => { if (e.key === 'Enter') applyEmail() }}
-                              placeholder="support@yourplatform.com"
+                              placeholder="support@qaventramarkets.com"
                               style={{
                                 width: '100%', height: 46, paddingLeft: 38, paddingRight: 14,
                                 borderRadius: 11, fontSize: 13,

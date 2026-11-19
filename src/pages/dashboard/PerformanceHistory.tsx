@@ -362,7 +362,7 @@ export function PerformanceHistory() {
                   t.status === 'COMPLETED' ? { color: '#60a5fa', bg: 'rgba(96,165,250,0.12)' }
                   : t.status === 'PENDING'  ? { color: '#f59e0b', bg: 'rgba(245,158,11,0.12)'  }
                   : { color: '#f87171', bg: 'rgba(248,113,113,0.12)' }
-                const desc = t.note || t.adminNote || (t.type === 'PROFIT' ? 'APEX Return' : 'Bonus Credit')
+                const desc = t.note || t.adminNote || (t.type === 'PROFIT' ? 'Qaventra Return' : 'Bonus Credit')
                 return (
                   <tr
                     key={t.id}

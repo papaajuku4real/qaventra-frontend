@@ -3,7 +3,7 @@ import { Bot, TrendingUp, Activity, Play, Pause, Settings, BarChart2 } from 'luc
 
 const BOTS = [
   {
-    id: 1, name: 'Apex Alpha',      strategy: 'Trend Following',   pair: 'BTC/USDT',
+    id: 1, name: 'Qaventra Alpha',      strategy: 'Trend Following',   pair: 'BTC/USDT',
     status: 'active', return: '+28.4%', winRate: '74%', trades: 312, runtime: '42 days',
     color: '#f59e0b', equity: [100,104,108,106,112,118,116,122,120,128],
     desc: 'Uses EMA crossovers and RSI to follow major BTC trends. Runs 24/7 with dynamic stop-loss.',
