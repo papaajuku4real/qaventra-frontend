@@ -6,7 +6,7 @@ import {
   ShieldCheck, Bell, LogOut, Menu, X,
   TrendingUp, FileText, Sliders, AlertTriangle,
   PanelLeftClose, PanelLeftOpen, Building2, Wallet, Copy, History,
-  Send, Loader2, Repeat, UserSquare,
+  Send, Loader2, Repeat, UserSquare, Landmark,
 } from 'lucide-react'
 import { adminApi } from '@/lib/api'
 
@@ -29,6 +29,8 @@ const buildNav = (counts: { totalUsers: number; pendingKYC: number; suspended: n
     { label: 'Withdrawals',      path: '/admin/withdrawals',   icon: ArrowUpCircle },
     { label: 'Transactions',     path: '/admin/transactions',  icon: FileText },
     { label: 'Auto Deposit',     path: '/admin/auto-deposit',  icon: Repeat },
+    { label: 'Loans',            path: '/admin/loans',         icon: Landmark },
+    { label: 'Loan Plans',       path: '/admin/loan-plans',    icon: Landmark },
   ]},
   { section: 'REAL ESTATE', items: [
     { label: 'Property Listings',    path: '/admin/properties',           icon: Building2 },

@@ -9,7 +9,7 @@ import {
   Activity, Copy, Bot, Zap, Download, ArrowUpRight, Menu, LogOut,
   Bell, Settings, Building2, CandlestickChart, UserCircle2, KeyRound,
   SlidersHorizontal, ShieldCheck, CreditCard, Globe, Lock, HelpCircle,
-  ChevronRight as ChevronRight2, Clock, HeadphonesIcon, ShieldOff, Pickaxe,
+  ChevronRight as ChevronRight2, Clock, HeadphonesIcon, ShieldOff, Pickaxe, Landmark,
 } from 'lucide-react'
 
 const NAV = [
@@ -49,6 +49,7 @@ const NAV = [
     items: [
       { label: 'Deposit Funds',    path: '/dashboard/deposit',    icon: Download },
       { label: 'Withdrawal Funds', path: '/dashboard/withdrawal', icon: ArrowUpRight },
+      { label: 'Loans',            path: '/dashboard/loans',      icon: Landmark },
     ],
   },
   {

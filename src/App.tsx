@@ -47,6 +47,8 @@ import { PropertyDetail } from '@/pages/dashboard/PropertyDetail'
 import { TradingMarkets } from '@/pages/dashboard/TradingMarkets'
 import { Mining } from '@/pages/dashboard/Mining'
 import { MiningHistory } from '@/pages/dashboard/MiningHistory'
+import { MyLoans } from '@/pages/dashboard/MyLoans'
+import { ApplyLoan } from '@/pages/dashboard/ApplyLoan'
 import { TradeDetail } from '@/pages/dashboard/TradeDetail'
 import { ProfileSettings } from '@/pages/dashboard/settings/ProfileSettings'
 import { ProfileUpdate } from '@/pages/dashboard/settings/ProfileUpdate'
@@ -73,6 +75,8 @@ import { AdminInvestmentPlans } from '@/pages/admin/AdminInvestmentPlans'
 import { AdminTrades } from '@/pages/admin/AdminTrades'
 import { AdminNotifications } from '@/pages/admin/AdminNotifications'
 import { AdminSettings } from '@/pages/admin/AdminSettings'
+import { AdminLoans } from '@/pages/admin/AdminLoans'
+import { AdminLoanPlans } from '@/pages/admin/AdminLoanPlans'
 import { BannedPage } from '@/pages/BannedPage'
 import { NotFound404 } from '@/pages/NotFound404'
 
@@ -181,6 +185,8 @@ function App() {
         <Route path="signals"      element={<PremiumSignals />} />
         <Route path="deposit"      element={<DepositFunds />} />
         <Route path="withdrawal"   element={<WithdrawalFunds />} />
+        <Route path="loans"        element={<MyLoans />} />
+        <Route path="loans/apply"  element={<ApplyLoan />} />
         <Route path="properties"       element={<PropertyListing />} />
         <Route path="properties/:id"   element={<PropertyDetail />} />
         {/* Settings pages */}
@@ -213,6 +219,8 @@ function App() {
         <Route path="auto-deposit"          element={<AdminAutoDeposit />} />
         <Route path="team"                  element={<AdminTeam />} />
         <Route path="investment-plans" element={<AdminInvestmentPlans />} />
+        <Route path="loans"            element={<AdminLoans />} />
+        <Route path="loan-plans"       element={<AdminLoanPlans />} />
         <Route path="analytics"        element={<AdminHome />} />
         <Route path="suspensions"      element={<AdminUsers />} />
         <Route path="notifications"    element={<AdminNotifications />} />
