@@ -19,11 +19,11 @@ const fmt = (n: number) => '$' + n.toLocaleString('en-US', { minimumFractionDigi
 const fmtHash = (v: number, unit: string) =>
   `${v >= 100 ? Math.round(v).toLocaleString('en-US') : v.toFixed(2).replace(/\.?0+$/, '')} ${unit}`
 
-const CARD: React.CSSProperties = { background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
+const CARD: React.CSSProperties = { background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
 const PRIMARY_BTN: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0.65rem 1.25rem',
   borderRadius: '0.625rem', fontSize: 13, fontWeight: 600, cursor: 'pointer', border: 'none',
-  background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)', color: '#050505',
+  background: 'linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%)', color: '#050505',
 }
 const GHOST_BTN: React.CSSProperties = {
   display: 'flex', alignItems: 'center', gap: 6, padding: '0.6rem 1rem', borderRadius: '0.625rem', fontSize: 13,
@@ -45,13 +45,13 @@ function Selectable({ active, disabled, onClick, children }: { active: boolean; 
       style={{
         textAlign: 'left', width: '100%', padding: '1rem', borderRadius: '0.75rem', position: 'relative',
         cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.45 : 1,
-        background: active ? 'rgba(251,146,60,0.08)' : 'rgba(255,255,255,0.03)',
-        border: active ? '1px solid rgba(251,146,60,0.5)' : '1px solid rgba(255,255,255,0.08)',
+        background: active ? 'rgba(96,165,250,0.08)' : 'rgba(255,255,255,0.03)',
+        border: active ? '1px solid rgba(96,165,250,0.5)' : '1px solid rgba(255,255,255,0.08)',
         transition: 'all 0.15s',
       }}
     >
       {active && (
-        <span style={{ position: 'absolute', top: 10, right: 10, width: 18, height: 18, borderRadius: '50%', background: '#fb923c', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ position: 'absolute', top: 10, right: 10, width: 18, height: 18, borderRadius: '50%', background: '#60a5fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <Check size={11} style={{ color: '#050505' }} />
         </span>
       )}
@@ -163,14 +163,14 @@ export function Mining() {
               <div className="flex items-center gap-2" style={{ flexShrink: 0 }}>
                 <div style={{
                   width: 28, height: 28, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  background: done || current ? 'rgba(251,146,60,0.15)' : 'rgba(255,255,255,0.05)',
-                  border: current ? '1px solid #fb923c' : '1px solid rgba(255,255,255,0.08)',
+                  background: done || current ? 'rgba(96,165,250,0.15)' : 'rgba(255,255,255,0.05)',
+                  border: current ? '1px solid #60a5fa' : '1px solid rgba(255,255,255,0.08)',
                 }}>
-                  {done ? <Check size={13} style={{ color: '#fb923c' }} /> : <s.icon size={13} style={{ color: current ? '#fb923c' : 'hsl(240 5% 50%)' }} />}
+                  {done ? <Check size={13} style={{ color: '#60a5fa' }} /> : <s.icon size={13} style={{ color: current ? '#60a5fa' : 'hsl(240 5% 50%)' }} />}
                 </div>
                 <span className="hidden sm:inline" style={{ fontSize: 12, fontWeight: 600, color: current ? 'hsl(40 6% 92%)' : 'hsl(240 5% 50%)' }}>{s.label}</span>
               </div>
-              {i < STEPS.length - 1 && <div style={{ flex: 1, height: 1, background: done ? 'rgba(251,146,60,0.4)' : 'rgba(255,255,255,0.08)' }} />}
+              {i < STEPS.length - 1 && <div style={{ flex: 1, height: 1, background: done ? 'rgba(96,165,250,0.4)' : 'rgba(255,255,255,0.08)' }} />}
             </div>
           )
         })}
@@ -186,7 +186,7 @@ export function Mining() {
               {opts.locations.map(l => (
                 <Selectable key={l.id} active={location === l.id} onClick={() => setLocation(l.id)}>
                   <div className="flex items-center gap-2 mb-1.5">
-                    <MapPin size={14} style={{ color: '#fb923c' }} />
+                    <MapPin size={14} style={{ color: '#60a5fa' }} />
                     <span style={{ fontSize: 14, fontWeight: 600, color: 'hsl(40 6% 92%)' }}>{l.name}</span>
                   </div>
                   <p style={{ fontSize: 11, color: 'hsl(240 5% 55%)' }}>{l.region} · {l.energy} power · {l.uptime}% uptime</p>

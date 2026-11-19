@@ -102,24 +102,24 @@ export function AdminLoanPlans() {
       <div className="flex items-start justify-between gap-4 mb-8 flex-wrap">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(249,115,22,0.18)', border: '1px solid rgba(249,115,22,0.3)' }}>
-              <Landmark size={18} style={{ color: '#fb923c' }} />
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(59,130,246,0.18)', border: '1px solid rgba(59,130,246,0.3)' }}>
+              <Landmark size={18} style={{ color: '#60a5fa' }} />
             </div>
             <h1 className="text-2xl font-semibold tracking-tight">Loan Plans</h1>
           </div>
           <p className="text-sm" style={{ color: 'hsl(240 5% 65%)' }}>
-            Plans shown on the user's Apply for a Loan page. Changes don't affect loans already applied for. <Link to="/admin/loans" style={{ color: '#fb923c' }}>Review applications</Link>
+            Plans shown on the user's Apply for a Loan page. Changes don't affect loans already applied for. <Link to="/admin/loans" style={{ color: '#60a5fa' }}>Review applications</Link>
           </p>
         </div>
         <button onClick={openAdd} className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium"
-          style={{ background: 'linear-gradient(135deg,#f97316,#ea580c)', color: '#fff', boxShadow: '0 4px 20px rgba(249,115,22,0.35)' }}>
+          style={{ background: 'linear-gradient(135deg,#3b82f6,#2563eb)', color: '#fff', boxShadow: '0 4px 20px rgba(59,130,246,0.35)' }}>
           <Plus size={15} /> Add Plan
         </button>
       </div>
 
       {flash && (
         <div className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium"
-          style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)', color: '#fb923c' }}>
+          style={{ background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', color: '#60a5fa' }}>
           <Check size={14} /> {flash}
         </div>
       )}
@@ -150,10 +150,10 @@ export function AdminLoanPlans() {
                   <p className="text-xs mt-0.5" style={{ color: 'hsl(240 5% 55%)' }}>order #{p.sortOrder} · {p.isActive ? 'Active' : 'Hidden from users'}</p>
                 </div>
                 <button onClick={() => toggle(p)} title={p.isActive ? 'Hide from users' : 'Show to users'}>
-                  {p.isActive ? <ToggleRight size={24} style={{ color: '#fb923c' }} /> : <ToggleLeft size={24} style={{ color: 'hsl(240 5% 40%)' }} />}
+                  {p.isActive ? <ToggleRight size={24} style={{ color: '#60a5fa' }} /> : <ToggleLeft size={24} style={{ color: 'hsl(240 5% 40%)' }} />}
                 </button>
               </div>
-              <span className="self-start text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(251,146,60,0.12)', color: '#fb923c' }}>
+              <span className="self-start text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: 'rgba(96,165,250,0.12)', color: '#60a5fa' }}>
                 {p.rate.toFixed(2)}% {p.interest}
               </span>
               <p className="text-xs leading-relaxed" style={{ color: 'hsl(240 5% 60%)' }}>{p.description || '—'}</p>
@@ -182,7 +182,7 @@ export function AdminLoanPlans() {
       {/* Add / edit modal */}
       {editing && (
         <div onClick={() => setEditing(null)} className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.65)' }}>
-          <div onClick={e => e.stopPropagation()} className="w-full max-w-xl rounded-2xl p-6 max-h-[90vh] overflow-y-auto" style={{ background: 'hsl(20 12% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div onClick={e => e.stopPropagation()} className="w-full max-w-xl rounded-2xl p-6 max-h-[90vh] overflow-y-auto" style={{ background: 'hsl(222 60% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="flex items-center justify-between mb-5">
               <h3 className="text-lg font-semibold">{editing === 'new' ? 'Add loan plan' : 'Edit loan plan'}</h3>
               <button onClick={() => setEditing(null)}><X size={18} style={{ color: 'hsl(240 5% 60%)' }} /></button>
@@ -207,7 +207,7 @@ export function AdminLoanPlans() {
               <Field label="Collateral (%, 0 = none)"><input type="number" step="any" className={INPUT} style={INPUT_STYLE} value={form.collateral} onChange={set('collateral')} /></Field>
               <Field label="Display order"><input type="number" className={INPUT} style={INPUT_STYLE} value={form.sortOrder} onChange={set('sortOrder')} /></Field>
               <label className="col-span-2 flex items-center gap-2 text-sm mt-1" style={{ color: 'hsl(240 5% 70%)', cursor: 'pointer' }}>
-                <input type="checkbox" checked={form.isActive} onChange={e => setForm(f => ({ ...f, isActive: e.target.checked }))} style={{ accentColor: '#f97316' }} />
+                <input type="checkbox" checked={form.isActive} onChange={e => setForm(f => ({ ...f, isActive: e.target.checked }))} style={{ accentColor: '#3b82f6' }} />
                 Show this plan to users
               </label>
             </div>
@@ -217,7 +217,7 @@ export function AdminLoanPlans() {
             <div className="flex gap-2 justify-end mt-5">
               <button onClick={() => setEditing(null)} className="px-4 py-2 rounded-xl text-sm" style={{ background: 'rgba(255,255,255,0.06)', color: 'hsl(40 6% 88%)' }}>Cancel</button>
               <button onClick={save} disabled={saving} className="flex items-center gap-1.5 px-5 py-2 rounded-xl text-sm font-semibold"
-                style={{ background: 'linear-gradient(135deg,#f97316,#ea580c)', color: '#fff' }}>
+                style={{ background: 'linear-gradient(135deg,#3b82f6,#2563eb)', color: '#fff' }}>
                 {saving && <Loader2 size={13} className="animate-spin" />} Save plan
               </button>
             </div>
@@ -228,7 +228,7 @@ export function AdminLoanPlans() {
       {/* Delete confirm */}
       {deleting && (
         <div onClick={() => setDeleting(null)} className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.65)' }}>
-          <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl p-6" style={{ background: 'hsl(20 12% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl p-6" style={{ background: 'hsl(222 60% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <h3 className="text-lg font-semibold mb-2">Delete "{deleting.name}"?</h3>
             <p className="text-sm mb-5" style={{ color: 'hsl(240 5% 65%)' }}>
               Users will no longer see this plan. Loans already taken on it keep their terms. This can't be undone. To hide it temporarily, use the toggle instead.

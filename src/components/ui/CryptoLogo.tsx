@@ -7,7 +7,7 @@
  *
  * Usage:
  *   <CryptoLogo symbol="BTC/USDT" size={30} />
- *   <CryptoLogo symbol="ETH" size={24} fallbackColor="#fb923c" />
+ *   <CryptoLogo symbol="ETH" size={24} fallbackColor="#60a5fa" />
  */
 import { useState } from 'react'
 

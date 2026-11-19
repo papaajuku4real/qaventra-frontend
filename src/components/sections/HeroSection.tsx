@@ -51,8 +51,8 @@ function SocialProofBar() {
               <span
                 className="text-xs font-semibold px-1.5 py-0.5 rounded-md"
                 style={{
-                  color: up ? '#4ade80' : '#f87171',
-                  backgroundColor: up ? 'rgba(74,222,128,0.12)' : 'rgba(248,113,113,0.12)',
+                  color: up ? '#60a5fa' : '#f87171',
+                  backgroundColor: up ? 'rgba(96,165,250,0.12)' : 'rgba(248,113,113,0.12)',
                 }}
               >
                 {change}%
@@ -71,7 +71,6 @@ export function HeroSection() {
     <section className="relative w-full min-h-screen flex flex-col overflow-hidden">
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        style={{ filter: 'grayscale(1) brightness(0.45) contrast(1.1)' }}
         autoPlay
         loop
         muted
@@ -82,77 +81,24 @@ export function HeroSection() {
         <source src={HERO_VIDEO} type="video/mp4" />
       </video>
 
-      {/* Orange gradient overlay — multi-layer to keep the globe visible while
+      {/* Purple gradient overlay — multi-layer to keep the globe visible while
           washing the scene in brand purple/violet/cyan. */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 55% at 50% 40%, rgba(249,115,22,0.28) 0%, rgba(249,115,22,0.12) 35%, transparent 65%), radial-gradient(ellipse 60% 50% at 15% 30%, rgba(249,115,22,0.32) 0%, transparent 60%), radial-gradient(ellipse 60% 55% at 85% 70%, rgba(234,88,12,0.18) 0%, transparent 60%), linear-gradient(180deg, rgba(34,33,32,0.55) 0%, rgba(25,24,23,0.65) 40%, rgba(20,19,18,0.88) 75%, hsl(20 12% 3%) 98%)',
+            'radial-gradient(ellipse 70% 55% at 50% 40%, rgba(59,130,246,0.28) 0%, rgba(59,130,246,0.12) 35%, transparent 65%), radial-gradient(ellipse 60% 50% at 15% 30%, rgba(59,130,246,0.32) 0%, transparent 60%), radial-gradient(ellipse 60% 55% at 85% 70%, rgba(34,211,238,0.18) 0%, transparent 60%), linear-gradient(180deg, rgba(12,24,60,0.55) 0%, rgba(8,18,45,0.65) 40%, rgba(6,14,35,0.88) 75%, hsl(222 87% 3%) 98%)',
           mixBlendMode: 'normal',
         }}
       />
-      {/* Soft warm vignette at the edges */}
+      {/* Soft violet vignette at the edges */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, transparent 40%, rgba(124,45,18,0.35) 90%, rgba(28,27,26,0.75) 100%)',
+            'radial-gradient(ellipse at center, transparent 40%, rgba(30,58,138,0.35) 90%, rgba(10,20,50,0.75) 100%)',
         }}
       />
-
-      {/* Orange horizon arc glow (reference design) — animated */}
-      <div className="absolute inset-x-0 bottom-0 h-[70%] pointer-events-none overflow-hidden">
-        <div className="qv-arc">
-          {/* static base ring + pulsing glow */}
-          <div className="qv-arc-base" />
-          {/* spinning light that sweeps along the ring */}
-          <div className="qv-arc-spin" />
-          {/* soft spinning haze above the ring for movement */}
-          <div className="qv-arc-haze" />
-        </div>
-        <style>{`
-          .qv-arc {
-            position: absolute; left: 50%; top: 38%; transform: translateX(-50%);
-            width: 150vw; height: 150vw; max-width: 1800px; max-height: 1800px;
-          }
-          .qv-arc > div { position: absolute; inset: 0; border-radius: 50%; }
-          .qv-arc-base {
-            border-top: 1.5px solid rgba(255,138,76,0.55);
-            background: radial-gradient(ellipse 50% 12% at 50% 0%, rgba(249,115,22,0.28) 0%, transparent 100%), hsl(20 12% 3%);
-            animation: qvArcPulse 4s ease-in-out infinite;
-          }
-          .qv-arc-spin {
-            padding: 2px;
-            background: conic-gradient(from 0deg,
-              transparent 0deg, rgba(255,170,110,0) 20deg, rgba(255,170,110,1) 40deg, rgba(249,115,22,0.9) 50deg, transparent 80deg,
-              transparent 180deg, rgba(255,170,110,0) 200deg, rgba(255,170,110,1) 220deg, rgba(249,115,22,0.9) 230deg, transparent 260deg,
-              transparent 360deg);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            filter: drop-shadow(0 0 6px rgba(255,138,76,0.9)) drop-shadow(0 0 18px rgba(249,115,22,0.7));
-            animation: qvArcSpin 9s linear infinite;
-          }
-          .qv-arc-haze {
-            inset: -6% !important;
-            background: conic-gradient(from 0deg,
-              transparent 0deg, rgba(249,115,22,0.22) 45deg, transparent 100deg,
-              transparent 180deg, rgba(244,81,30,0.18) 225deg, transparent 280deg);
-            filter: blur(60px);
-            -webkit-mask: radial-gradient(circle, transparent 62%, #000 68%, transparent 74%);
-                    mask: radial-gradient(circle, transparent 62%, #000 68%, transparent 74%);
-            animation: qvArcSpin 14s linear infinite reverse;
-          }
-          @keyframes qvArcSpin { to { transform: rotate(360deg); } }
-          @keyframes qvArcPulse {
-            0%, 100% { box-shadow: 0 -18px 60px rgba(249,115,22,0.45), 0 -60px 160px rgba(244,81,30,0.25), inset 0 40px 120px rgba(249,115,22,0.18); }
-            50%      { box-shadow: 0 -24px 80px rgba(249,115,22,0.70), 0 -80px 200px rgba(244,81,30,0.40), inset 0 50px 140px rgba(249,115,22,0.28); }
-          }
-          @media (prefers-reduced-motion: reduce) {
-            .qv-arc-spin, .qv-arc-haze, .qv-arc-base { animation: none; }
-          }
-        `}</style>
-      </div>
 
       <div className="relative z-10 flex flex-col flex-1 w-full">
         <Navbar />

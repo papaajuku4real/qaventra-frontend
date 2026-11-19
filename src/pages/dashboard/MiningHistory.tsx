@@ -14,17 +14,17 @@ const LOCATION_NAMES: Record<string, string> = {
   quebec: 'Québec, Canada', kazakhstan: 'Almaty, Kazakhstan',
 }
 const COIN_COLORS: Record<string, string> = {
-  BTC: '#f59e0b', ETH: '#818cf8', LTC: '#94a3b8', DOGE: '#eab308', KAS: '#ea580c', ETC: '#fb923c',
+  BTC: '#f59e0b', ETH: '#818cf8', LTC: '#94a3b8', DOGE: '#eab308', KAS: '#22d3ee', ETC: '#60a5fa',
 }
 const STATUS_STYLE: Record<string, { color: string; bg: string }> = {
-  Active:    { color: '#fb923c', bg: 'rgba(251,146,60,0.12)' },
+  Active:    { color: '#60a5fa', bg: 'rgba(96,165,250,0.12)' },
   Completed: { color: '#4ade80', bg: 'rgba(74,222,128,0.12)' },
   Cancelled: { color: '#f87171', bg: 'rgba(248,113,113,0.12)' },
 }
 
 const fmt = (n: number) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const fmtDate = (d: string) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-const CARD: React.CSSProperties = { background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
+const CARD: React.CSSProperties = { background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
 
 export function MiningHistory() {
   const navigate = useNavigate()
@@ -51,7 +51,7 @@ export function MiningHistory() {
         </div>
         <button
           onClick={() => navigate('/dashboard/mining')}
-          style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0.55rem 1rem', borderRadius: '0.6rem', background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)', color: '#050505', fontSize: 13, fontWeight: 600, border: 'none', cursor: 'pointer' }}
+          style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0.55rem 1rem', borderRadius: '0.6rem', background: 'linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%)', color: '#050505', fontSize: 13, fontWeight: 600, border: 'none', cursor: 'pointer' }}
         >
           <Plus size={14} /> Start Mining
         </button>
@@ -72,8 +72,8 @@ export function MiningHistory() {
           { label: 'Total Earned',     value: fmt(totalEarned),      icon: DollarSign },
         ].map(s => (
           <div key={s.label} style={{ ...CARD, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-            <div style={{ width: 36, height: 36, borderRadius: '0.6rem', background: 'rgba(251,146,60,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <s.icon size={16} style={{ color: '#fb923c' }} />
+            <div style={{ width: 36, height: 36, borderRadius: '0.6rem', background: 'rgba(96,165,250,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <s.icon size={16} style={{ color: '#60a5fa' }} />
             </div>
             <div>
               <p style={{ fontSize: 11, color: 'hsl(240 5% 50%)', marginBottom: 2 }}>{s.label}</p>
@@ -105,7 +105,7 @@ export function MiningHistory() {
             const start = new Date(s.startedAt).getTime()
             const end   = new Date(s.endsAt).getTime()
             const pct   = s.status === 'Active' ? Math.min(100, Math.max(0, ((Date.now() - start) / (end - start)) * 100)) : 100
-            const color = COIN_COLORS[s.coin] ?? '#fb923c'
+            const color = COIN_COLORS[s.coin] ?? '#60a5fa'
             const st    = STATUS_STYLE[s.status] ?? STATUS_STYLE.Active
             return (
               <div key={s.id} style={{ ...CARD, padding: '1.25rem' }}>

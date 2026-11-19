@@ -25,7 +25,7 @@ export interface Loan {
 }
 
 const STATUS_STYLE: Record<Loan['status'], { color: string; bg: string; label: string }> = {
-  Active:   { color: '#fb923c', bg: 'rgba(251,146,60,0.12)',  label: 'Active' },
+  Active:   { color: '#60a5fa', bg: 'rgba(96,165,250,0.12)',  label: 'Active' },
   Pending:  { color: '#f59e0b', bg: 'rgba(245,158,11,0.12)',  label: 'Pending' },
   Repaid:   { color: '#4ade80', bg: 'rgba(74,222,128,0.12)',  label: 'Repaid' },
   Rejected: { color: '#f87171', bg: 'rgba(248,113,113,0.12)', label: 'Declined' },
@@ -33,12 +33,12 @@ const STATUS_STYLE: Record<Loan['status'], { color: string; bg: string; label: s
 
 const fmt = (n: number) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const fmtDate = (d: string) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-const CARD: React.CSSProperties = { background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
+const CARD: React.CSSProperties = { background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
 const TH: React.CSSProperties = { textAlign: 'left', fontSize: 11, fontWeight: 600, color: 'hsl(240 5% 50%)', padding: '0.75rem 1.25rem', textTransform: 'uppercase', letterSpacing: '0.04em' }
 const TD: React.CSSProperties = { fontSize: 13, color: 'hsl(40 6% 88%)', padding: '0.875rem 1.25rem', borderTop: '1px solid rgba(255,255,255,0.05)', verticalAlign: 'top' }
 const PRIMARY_BTN: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0.55rem 1rem', borderRadius: '0.6rem',
-  background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)', color: '#050505', fontSize: 13, fontWeight: 600, border: 'none', cursor: 'pointer',
+  background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)', color: '#050505', fontSize: 13, fontWeight: 600, border: 'none', cursor: 'pointer',
 }
 const GHOST_BTN: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0.5rem 0.875rem', borderRadius: '0.6rem', fontSize: 12,
@@ -98,8 +98,8 @@ export function MyLoans() {
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-5">
         {stats.map(s => (
           <div key={s.label} style={{ ...CARD, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: '0.875rem' }}>
-            <div style={{ width: 36, height: 36, borderRadius: '0.6rem', background: 'rgba(251,146,60,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <s.icon size={16} style={{ color: '#fb923c' }} />
+            <div style={{ width: 36, height: 36, borderRadius: '0.6rem', background: 'rgba(96,165,250,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <s.icon size={16} style={{ color: '#60a5fa' }} />
             </div>
             <div>
               <p style={{ fontSize: 11, color: 'hsl(240 5% 50%)', marginBottom: 2 }}>{s.label}</p>
@@ -154,7 +154,7 @@ export function MyLoans() {
                       {(l.status === 'Active' || l.status === 'Repaid') && (
                         <>
                           <div style={{ height: 4, borderRadius: 999, background: 'rgba(255,255,255,0.06)', overflow: 'hidden', margin: '6px 0 3px', maxWidth: 140 }}>
-                            <div style={{ height: '100%', width: `${pct}%`, background: '#fb923c', borderRadius: 999 }} />
+                            <div style={{ height: '100%', width: `${pct}%`, background: '#60a5fa', borderRadius: 999 }} />
                           </div>
                           <p style={{ fontSize: 11, color: 'hsl(240 5% 50%)' }}>{fmt(l.repaid)} paid</p>
                         </>
@@ -220,7 +220,7 @@ function RepayModal({ loan, balance, onClose, onDone, onDeposit }: {
 
   return (
     <div onClick={onClose} style={{ position: 'fixed', inset: 0, zIndex: 60, background: 'rgba(0,0,0,0.65)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div onClick={e => e.stopPropagation()} style={{ ...CARD, background: 'hsl(20 12% 6%)', width: '100%', maxWidth: 420, padding: '1.25rem' }}>
+      <div onClick={e => e.stopPropagation()} style={{ ...CARD, background: 'hsl(222 60% 6%)', width: '100%', maxWidth: 420, padding: '1.25rem' }}>
         <div className="flex items-center justify-between mb-4">
           <p style={{ fontSize: 15, fontWeight: 700, color: 'hsl(40 6% 94%)' }}>Repay {loan.planName}</p>
           <button onClick={onClose} aria-label="Close" style={{ background: 'none', border: 'none', color: 'hsl(240 5% 60%)', cursor: 'pointer' }}><X size={18} /></button>
@@ -252,7 +252,7 @@ function RepayModal({ loan, balance, onClose, onDone, onDeposit }: {
 
         {error && (
           <p style={{ fontSize: 12, color: '#f87171', marginBottom: 10 }}>
-            {error}{amt > balance && <> <button onClick={onDeposit} style={{ color: '#fb923c', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 600 }}>Deposit funds</button></>}
+            {error}{amt > balance && <> <button onClick={onDeposit} style={{ color: '#60a5fa', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 600 }}>Deposit funds</button></>}
           </p>
         )}
 

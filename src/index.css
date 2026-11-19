@@ -9,17 +9,17 @@
 
 @layer base {
   :root {
-    --background: 20 12% 3%;
+    --background: 222 87% 3%;
     --foreground: 40 6% 95%;
-    --primary: 20 95% 55%;
-    --primary-foreground: 0 0% 100%;
-    --primary-gradient: linear-gradient(135deg, #ff7a3d 0%, #f4511e 100%);
-    --secondary: 20 5% 14%;
-    --border: 20 5% 18%;
+    --primary: 222 83% 75%;
+    --primary-foreground: 0 0% 5%;
+    --primary-gradient: linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%);
+    --secondary: 240 4% 16%;
+    --border: 240 4% 20%;
     --hero-heading: 40 10% 96%;
     --hero-sub: 40 6% 82%;
-    --card: 20 6% 8%;
-    --muted: 20 5% 14%;
+    --card: 240 6% 9%;
+    --muted: 240 4% 16%;
     --muted-foreground: 240 5% 65%;
     --radius: 0.75rem;
   }
@@ -45,14 +45,6 @@
 }
 
 @layer utilities {
-  /* Orange glow, as in the reference design */
-  .glow-orange {
-    box-shadow: 0 0 0 1px rgba(251,146,60,0.18), 0 10px 40px -10px rgba(249,115,22,0.45);
-  }
-  .glow-orange-text {
-    text-shadow: 0 0 24px rgba(249,115,22,0.45);
-  }
-
   .bg-primary-gradient {
     background: var(--primary-gradient);
   }

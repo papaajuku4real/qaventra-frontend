@@ -6,7 +6,7 @@ import { useFavorites } from '@/hooks/useFavorites'
 
 const MARKETS = [
   { name: 'Bitcoin',   symbol: 'BTC/USDT', price: 83552.00, change: +2.34, vol: '$28.4B', cap: '$1.64T',  data: [78000,79200,81000,80400,82100,83552], color: '#f59e0b', starred: true  },
-  { name: 'Ethereum',  symbol: 'ETH/USDT', price: 3118.50,  change: +1.12, vol: '$12.1B', cap: '$374B',   data: [3050,3070,3090,3060,3100,3118],     color: '#fb923c', starred: true  },
+  { name: 'Ethereum',  symbol: 'ETH/USDT', price: 3118.50,  change: +1.12, vol: '$12.1B', cap: '$374B',   data: [3050,3070,3090,3060,3100,3118],     color: '#60a5fa', starred: true  },
   { name: 'Solana',    symbol: 'SOL/USDT', price: 185.22,   change: -0.88, vol: '$3.2B',  cap: '$85B',    data: [192,190,188,186,185,185],           color: '#a78bfa', starred: false },
   { name: 'BNB',       symbol: 'BNB/USDT', price: 586.40,   change: +0.45, vol: '$1.8B',  cap: '$88B',    data: [578,580,582,580,584,586],           color: '#fbbf24', starred: false },
   { name: 'XRP',       symbol: 'XRP/USDT', price: 0.618,    change: -1.22, vol: '$2.1B',  cap: '$67B',    data: [0.64,0.63,0.62,0.61,0.62,0.618],   color: '#a78bfa', starred: false },
@@ -14,7 +14,7 @@ const MARKETS = [
   { name: 'Dogecoin',  symbol: 'DOGE/USDT',price: 0.1742,   change: +5.22, vol: '$1.4B',  cap: '$25B',    data: [0.164,0.166,0.168,0.170,0.172,0.1742],color: '#fde68a',starred: false },
   { name: 'Avalanche', symbol: 'AVAX/USDT',price: 38.42,    change: -2.14, vol: '$0.6B',  cap: '$16B',    data: [40,39.5,39,38.8,38.5,38.42],       color: '#fb923c', starred: false },
   { name: 'Polkadot',  symbol: 'DOT/USDT', price: 7.84,     change: +0.92, vol: '$0.4B',  cap: '$11B',    data: [7.6,7.65,7.7,7.72,7.8,7.84],      color: '#e879f9', starred: false },
-  { name: 'Chainlink', symbol: 'LINK/USDT',price: 14.22,    change: +1.88, vol: '$0.7B',  cap: '$9B',     data: [13.8,13.9,14.0,14.1,14.15,14.22], color: '#fb923c', starred: false },
+  { name: 'Chainlink', symbol: 'LINK/USDT',price: 14.22,    change: +1.88, vol: '$0.7B',  cap: '$9B',     data: [13.8,13.9,14.0,14.1,14.15,14.22], color: '#38bdf8', starred: false },
 ]
 
 const OVERVIEW = [
@@ -45,7 +45,7 @@ function Sparkline({ data, color }: { data: number[]; color: string }) {
 }
 
 function Card({ children, style = {} }: { children: React.ReactNode; style?: React.CSSProperties }) {
-  return <div style={{ background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem', ...style }}>{children}</div>
+  return <div style={{ background: 'hsl(260 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem', ...style }}>{children}</div>
 }
 
 export function LiveMarkets() {
@@ -156,7 +156,7 @@ export function LiveMarkets() {
                   <td style={{ padding: '0.75rem 1rem' }}>
                     <button
                       onClick={(e) => { e.stopPropagation(); handleTrade(m.symbol) }}
-                      style={{ padding: '0.3rem 0.75rem', borderRadius: '0.5rem', background: 'linear-gradient(135deg, #a78bfa 0%, #ea580c 100%)', color: '#050505', fontSize: 11, fontWeight: 700, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
+                      style={{ padding: '0.3rem 0.75rem', borderRadius: '0.5rem', background: 'linear-gradient(135deg, #a78bfa 0%, #22d3ee 100%)', color: '#050505', fontSize: 11, fontWeight: 700, border: 'none', cursor: 'pointer', whiteSpace: 'nowrap' }}
                     >
                       Trade
                     </button>

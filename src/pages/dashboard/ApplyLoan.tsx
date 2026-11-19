@@ -40,7 +40,7 @@ export function calcRepayment(plan: LoanPlan, amount: number, months: number) {
 
 const fmt = (n: number) => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const fmt0 = (n: number) => '$' + n.toLocaleString('en-US', { maximumFractionDigits: 0 })
-const CARD: React.CSSProperties = { background: 'hsl(20 12% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
+const CARD: React.CSSProperties = { background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: '0.875rem' }
 const LABEL: React.CSSProperties = { fontSize: 12, color: 'hsl(240 5% 60%)', display: 'block', marginBottom: 6 }
 const INPUT: React.CSSProperties = {
   width: '100%', padding: '0.65rem 0.875rem', borderRadius: '0.625rem', background: 'rgba(255,255,255,0.04)',
@@ -49,7 +49,7 @@ const INPUT: React.CSSProperties = {
 const PRIMARY_BTN: React.CSSProperties = {
   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '0.7rem 1.25rem', width: '100%',
   borderRadius: '0.625rem', fontSize: 13, fontWeight: 600, cursor: 'pointer', border: 'none',
-  background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)', color: '#050505',
+  background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)', color: '#050505',
 }
 const PURPOSES = ['Trading capital', 'Personal expenses', 'Business expansion', 'Property investment', 'Debt consolidation', 'Other']
 
@@ -144,13 +144,13 @@ export function ApplyLoan() {
               onClick={() => selectPlan(p)}
               style={{
                 ...CARD, padding: '1.25rem', textAlign: 'left', cursor: 'pointer', position: 'relative',
-                border: active ? '1px solid rgba(251,146,60,0.6)' : CARD.border,
-                boxShadow: active ? '0 0 0 3px rgba(251,146,60,0.12)' : 'none',
+                border: active ? '1px solid rgba(96,165,250,0.6)' : CARD.border,
+                boxShadow: active ? '0 0 0 3px rgba(96,165,250,0.12)' : 'none',
               }}
             >
               <div className="flex items-start justify-between gap-3 mb-2">
                 <p style={{ fontSize: 15, fontWeight: 700, color: 'hsl(40 6% 94%)' }}>{p.name}</p>
-                <span style={{ fontSize: 11, fontWeight: 600, padding: '3px 9px', borderRadius: 999, background: 'rgba(251,146,60,0.12)', color: '#fb923c', whiteSpace: 'nowrap' }}>
+                <span style={{ fontSize: 11, fontWeight: 600, padding: '3px 9px', borderRadius: 999, background: 'rgba(96,165,250,0.12)', color: '#60a5fa', whiteSpace: 'nowrap' }}>
                   {p.rate.toFixed(2)}% {p.interest}
                 </span>
               </div>
@@ -165,7 +165,7 @@ export function ApplyLoan() {
                 <p style={{ fontSize: 12, color: '#f59e0b', marginTop: 10 }}>Requires {p.collateral.toFixed(2)}% collateral</p>
               )}
               {active && (
-                <span style={{ position: 'absolute', bottom: 12, right: 12, width: 20, height: 20, borderRadius: 999, background: '#fb923c', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ position: 'absolute', bottom: 12, right: 12, width: 20, height: 20, borderRadius: 999, background: '#60a5fa', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Check size={12} style={{ color: '#050505' }} strokeWidth={3} />
                 </span>
               )}
@@ -193,7 +193,7 @@ export function ApplyLoan() {
               <AlertTriangle size={16} style={{ color: '#f59e0b', flexShrink: 0, marginTop: 1 }} />
               <p style={{ fontSize: 12, color: 'hsl(40 6% 80%)' }}>
                 This plan needs a balance of at least {fmt(plan.minBalance)}. Your balance is {fmt(balance)}.{' '}
-                <button onClick={() => navigate('/dashboard/deposit')} style={{ color: '#fb923c', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 600 }}>Deposit funds</button>
+                <button onClick={() => navigate('/dashboard/deposit')} style={{ color: '#60a5fa', background: 'none', border: 'none', padding: 0, cursor: 'pointer', fontWeight: 600 }}>Deposit funds</button>
               </p>
             </div>
           )}
@@ -227,8 +227,8 @@ export function ApplyLoan() {
           </div>
 
           {plan.collateral > 0 && (
-            <div style={{ display: 'flex', gap: 10, padding: '0.75rem 0.875rem', borderRadius: '0.625rem', background: 'rgba(251,146,60,0.06)', border: '1px solid rgba(251,146,60,0.2)', marginBottom: 16 }}>
-              <ShieldCheck size={16} style={{ color: '#fb923c', flexShrink: 0, marginTop: 1 }} />
+            <div style={{ display: 'flex', gap: 10, padding: '0.75rem 0.875rem', borderRadius: '0.625rem', background: 'rgba(96,165,250,0.06)', border: '1px solid rgba(96,165,250,0.2)', marginBottom: 16 }}>
+              <ShieldCheck size={16} style={{ color: '#60a5fa', flexShrink: 0, marginTop: 1 }} />
               <p style={{ fontSize: 12, color: 'hsl(40 6% 80%)' }}>
                 This plan requires {plan.collateral}% collateral{amt > 0 ? <> ({fmt(calc.collateral)})</> : null}, held back from the payout and returned to your balance once the loan is fully repaid.
               </p>
@@ -236,7 +236,7 @@ export function ApplyLoan() {
           )}
 
           <label className="flex items-start gap-2.5" style={{ cursor: 'pointer', marginBottom: 16 }}>
-            <input type="checkbox" checked={agree} onChange={e => { setAgree(e.target.checked); setError('') }} style={{ marginTop: 2, accentColor: '#fb923c' }} />
+            <input type="checkbox" checked={agree} onChange={e => { setAgree(e.target.checked); setError('') }} style={{ marginTop: 2, accentColor: '#60a5fa' }} />
             <span style={{ fontSize: 12, color: 'hsl(240 5% 62%)' }}>
               I agree to the loan terms and understand that late repayments may incur additional charges.
             </span>
@@ -252,9 +252,9 @@ export function ApplyLoan() {
         <div className="lg:col-span-2" style={{ ...CARD, padding: '1.25rem', alignSelf: 'start' }}>
           <p style={{ fontSize: 15, fontWeight: 700, color: 'hsl(40 6% 94%)', marginBottom: 14 }}>Repayment Preview</p>
 
-          <div style={{ padding: '1rem', borderRadius: '0.75rem', background: 'rgba(251,146,60,0.08)', border: '1px solid rgba(251,146,60,0.2)', marginBottom: 14 }}>
+          <div style={{ padding: '1rem', borderRadius: '0.75rem', background: 'rgba(96,165,250,0.08)', border: '1px solid rgba(96,165,250,0.2)', marginBottom: 14 }}>
             <p style={{ fontSize: 11, color: 'hsl(240 5% 58%)', marginBottom: 4 }}>Monthly Payment</p>
-            <p className="glow-orange-text" style={{ fontSize: '1.6rem', fontWeight: 700, color: '#fb923c' }}>{fmt(calc.monthly)}</p>
+            <p className="" style={{ fontSize: '1.6rem', fontWeight: 700, color: '#60a5fa' }}>{fmt(calc.monthly)}</p>
             <p style={{ fontSize: 11, color: 'hsl(240 5% 55%)', marginTop: 2 }}>for {mo} {mo === 1 ? 'month' : 'months'}</p>
           </div>
 

@@ -36,7 +36,7 @@ function imgSrc(url: string | null | undefined) {
 }
 
 const STATUS_STYLES: Record<string, { color: string; bg: string }> = {
-  AVAILABLE: { color: '#fb923c', bg: 'rgba(251,146,60,0.12)' },
+  AVAILABLE: { color: '#60a5fa', bg: 'rgba(96,165,250,0.12)' },
   PENDING:   { color: '#f59e0b', bg: 'rgba(245,158,11,0.12)' },
   SOLD:      { color: '#f87171', bg: 'rgba(248,113,113,0.12)' },
 }
@@ -117,7 +117,7 @@ export function PropertyListing() {
         <div className="flex items-center gap-2 mb-3">
           <span style={{
             fontSize: 11, fontWeight: 600, letterSpacing: '0.08em',
-            color: '#fb923c', background: 'rgba(251,146,60,0.1)',
+            color: '#60a5fa', background: 'rgba(96,165,250,0.1)',
             padding: '4px 10px', borderRadius: 999,
           }}>
             REAL ESTATE
@@ -140,10 +140,10 @@ export function PropertyListing() {
       {/* ── Stats Strip ── */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         {[
-          { label: 'Total Listings',     value: String(properties.length), sub: 'Active properties',   color: '#fdba74' },
-          { label: 'Available Now',      value: String(available), sub: 'Ready to invest', color: '#fb923c' },
+          { label: 'Total Listings',     value: String(properties.length), sub: 'Active properties',   color: '#93c5fd' },
+          { label: 'Available Now',      value: String(available), sub: 'Ready to invest', color: '#60a5fa' },
           { label: 'Avg. ROI',           value: `${avgROI}%`, sub: 'Annual return',       color: '#f59e0b' },
-          { label: 'Portfolio Value',    value: fmt(totalValue),   sub: 'Combined listing', color: '#fb923c' },
+          { label: 'Portfolio Value',    value: fmt(totalValue),   sub: 'Combined listing', color: '#38bdf8' },
         ].map(stat => (
           <div key={stat.label} style={{
             background: 'rgba(255,255,255,0.025)',
@@ -197,7 +197,7 @@ export function PropertyListing() {
               appearance: 'none', minWidth: 140,
             }}
           >
-            {TYPE_OPTIONS.map(t => <option key={t} value={t} style={{ background: 'hsl(20 12% 6%)' }}>{t === 'All' ? 'All' : displayType(t)}</option>)}
+            {TYPE_OPTIONS.map(t => <option key={t} value={t} style={{ background: 'hsl(222 87% 6%)' }}>{t === 'All' ? 'All' : displayType(t)}</option>)}
           </select>
           <ChevronDown size={13} style={{
             position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
@@ -218,7 +218,7 @@ export function PropertyListing() {
               appearance: 'none', minWidth: 170,
             }}
           >
-            {SORT_OPTIONS.map(s => <option key={s} value={s} style={{ background: 'hsl(20 12% 6%)' }}>{s}</option>)}
+            {SORT_OPTIONS.map(s => <option key={s} value={s} style={{ background: 'hsl(222 87% 6%)' }}>{s}</option>)}
           </select>
           <ChevronDown size={13} style={{
             position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)',
@@ -259,8 +259,8 @@ export function PropertyListing() {
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
                 el.style.transform = 'translateY(-4px)'
-                el.style.borderColor = 'rgba(251,146,60,0.35)'
-                el.style.boxShadow = '0 12px 40px rgba(251,146,60,0.12)'
+                el.style.borderColor = 'rgba(96,165,250,0.35)'
+                el.style.boxShadow = '0 12px 40px rgba(96,165,250,0.12)'
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLDivElement
@@ -345,7 +345,7 @@ export function PropertyListing() {
                 <span style={{
                   position: 'absolute', bottom: 10, right: 10,
                   fontSize: 10, fontWeight: 700,
-                  color: '#fb923c', background: 'rgba(0,0,0,0.5)',
+                  color: '#60a5fa', background: 'rgba(0,0,0,0.5)',
                   backdropFilter: 'blur(6px)',
                   padding: '3px 8px', borderRadius: 6,
                   display: 'flex', alignItems: 'center', gap: 3,
@@ -368,7 +368,7 @@ export function PropertyListing() {
                 </div>
 
                 {/* Price */}
-                <p style={{ fontSize: 17, fontWeight: 800, color: '#fb923c', marginBottom: 8, letterSpacing: '-0.01em' }}>
+                <p style={{ fontSize: 17, fontWeight: 800, color: '#60a5fa', marginBottom: 8, letterSpacing: '-0.01em' }}>
                   {fmt(property.price)}
                   <span style={{ fontSize: 11, fontWeight: 400, color: 'hsl(240 5% 50%)', marginLeft: 4 }}>
                     / {property.yieldPct ?? 0}% yield
@@ -388,8 +388,8 @@ export function PropertyListing() {
                   {(property.tags ?? []).map(tag => (
                     <span key={tag} style={{
                       fontSize: 10, fontWeight: 500, padding: '2px 7px', borderRadius: 5,
-                      background: 'rgba(251,146,60,0.1)', color: '#fdba74',
-                      border: '1px solid rgba(251,146,60,0.2)',
+                      background: 'rgba(96,165,250,0.1)', color: '#93c5fd',
+                      border: '1px solid rgba(96,165,250,0.2)',
                     }}>
                       {tag}
                     </span>
@@ -443,11 +443,11 @@ export function PropertyListing() {
                     cursor: property.status === 'SOLD' ? 'default' : 'pointer',
                     background: property.status === 'SOLD'
                       ? 'rgba(255,255,255,0.04)'
-                      : 'linear-gradient(135deg, rgba(251,146,60,0.25) 0%, rgba(251,146,60,0.15) 100%)',
-                    color: property.status === 'SOLD' ? 'hsl(240 5% 45%)' : '#fdba74',
+                      : 'linear-gradient(135deg, rgba(96,165,250,0.25) 0%, rgba(96,165,250,0.15) 100%)',
+                    color: property.status === 'SOLD' ? 'hsl(240 5% 45%)' : '#93c5fd',
                     border: property.status === 'SOLD'
                       ? '1px solid rgba(255,255,255,0.06)'
-                      : '1px solid rgba(251,146,60,0.3)',
+                      : '1px solid rgba(96,165,250,0.3)',
                     transition: 'all 0.2s',
                   }}
                 >

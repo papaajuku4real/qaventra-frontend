@@ -18,7 +18,7 @@ interface TeamMember {
 
 // ── Shared styles ─────────────────────────────────────────────────────────────
 const card: React.CSSProperties = {
-  background: 'hsl(20 6% 9%)',
+  background: 'hsl(240 6% 9%)',
   border: '1px solid rgba(255,255,255,0.07)',
   borderRadius: 14,
 }
@@ -61,7 +61,7 @@ function Avatar({ member, size = 48 }: { member: TeamMember; size?: number }) {
   return (
     <div style={{
       width: size, height: size, borderRadius: size / 4, flexShrink: 0,
-      background: 'linear-gradient(135deg,#ea580c,#c2410c)',
+      background: 'linear-gradient(135deg,#2563eb,#1d4ed8)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontSize: size * 0.3, fontWeight: 800, color: '#fff',
     }}>
@@ -82,7 +82,7 @@ function Modal({ title, onClose, children }: { title: string; onClose: () => voi
     }}>
       <div style={{
         width: '100%', maxWidth: 520, margin: 'auto',
-        background: 'hsl(20 6% 9%)',
+        background: 'hsl(240 6% 9%)',
         border: '1px solid rgba(255,255,255,0.1)',
         borderRadius: 18,
         boxShadow: '0 24px 60px rgba(0,0,0,0.7)',
@@ -208,7 +208,7 @@ function MemberForm({
         <button type="button" onClick={onClose} style={{ flex: 1, padding: '10px', borderRadius: 9, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.04)', color: 'hsl(240 5% 60%)', fontSize: 13, cursor: 'pointer' }}>
           Cancel
         </button>
-        <button type="submit" disabled={saving} style={{ flex: 2, padding: '10px', borderRadius: 9, border: 'none', background: 'linear-gradient(135deg,#ea580c,#c2410c)', color: '#fff', fontSize: 13, fontWeight: 700, cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? 0.6 : 1 }}>
+        <button type="submit" disabled={saving} style={{ flex: 2, padding: '10px', borderRadius: 9, border: 'none', background: 'linear-gradient(135deg,#2563eb,#1d4ed8)', color: '#fff', fontSize: 13, fontWeight: 700, cursor: saving ? 'not-allowed' : 'pointer', opacity: saving ? 0.6 : 1 }}>
           {saving ? 'Saving…' : initial ? 'Save Changes' : 'Add Member'}
         </button>
       </div>
@@ -312,7 +312,7 @@ export function AdminTeam() {
           <button onClick={load} title="Refresh" style={{ width: 36, height: 36, borderRadius: 9, border: '1px solid rgba(255,255,255,0.08)', background: 'rgba(255,255,255,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'hsl(240 5% 55%)' }}>
             <RefreshCw size={14} />
           </button>
-          <button onClick={() => setAddOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 16px', borderRadius: 9, border: 'none', background: 'linear-gradient(135deg,#ea580c,#c2410c)', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+          <button onClick={() => setAddOpen(true)} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 16px', borderRadius: 9, border: 'none', background: 'linear-gradient(135deg,#2563eb,#1d4ed8)', color: '#fff', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
             <Plus size={14} /> Add Member
           </button>
         </div>
@@ -321,7 +321,7 @@ export function AdminTeam() {
       {/* Stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(160px,1fr))', gap: 14, marginBottom: '1.75rem' }}>
         <div style={{ ...card, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 9, background: 'rgba(251,146,60,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fb923c' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 9, background: 'rgba(96,165,250,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#60a5fa' }}>
             <Users size={14} />
           </div>
           <div>
@@ -330,7 +330,7 @@ export function AdminTeam() {
           </div>
         </div>
         <div style={{ ...card, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <div style={{ width: 32, height: 32, borderRadius: 9, background: 'rgba(251,146,60,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fb923c' }}>
+          <div style={{ width: 32, height: 32, borderRadius: 9, background: 'rgba(96,165,250,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#60a5fa' }}>
             <Image size={14} />
           </div>
           <div>
@@ -360,7 +360,7 @@ export function AdminTeam() {
                 <Avatar member={member} size={52} />
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <p style={{ fontSize: 14, fontWeight: 700, color: 'hsl(40 10% 92%)', marginBottom: 2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{member.name}</p>
-                  <p style={{ fontSize: 12, color: '#fb923c', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{member.role}</p>
+                  <p style={{ fontSize: 12, color: '#60a5fa', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{member.role}</p>
                   <p style={{ fontSize: 10.5, color: 'hsl(240 5% 42%)', marginTop: 3 }}>Order: {member.sortOrder}</p>
                 </div>
               </div>
@@ -376,7 +376,7 @@ export function AdminTeam() {
               <div style={{ display: 'flex', gap: 8, borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: 12 }}>
                 <button
                   onClick={() => setEditTarget(member)}
-                  style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '7px', borderRadius: 8, border: '1px solid rgba(251,146,60,0.25)', background: 'rgba(251,146,60,0.07)', color: '#fb923c', fontSize: 12, cursor: 'pointer' }}
+                  style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6, padding: '7px', borderRadius: 8, border: '1px solid rgba(96,165,250,0.25)', background: 'rgba(96,165,250,0.07)', color: '#60a5fa', fontSize: 12, cursor: 'pointer' }}
                 >
                   <Pencil size={12} /> Edit
                 </button>
@@ -413,7 +413,7 @@ export function AdminTeam() {
             <Avatar member={delTarget} size={52} />
             <div>
               <p style={{ fontSize: 14, fontWeight: 700, color: 'hsl(40 10% 92%)' }}>{delTarget.name}</p>
-              <p style={{ fontSize: 12, color: '#fb923c' }}>{delTarget.role}</p>
+              <p style={{ fontSize: 12, color: '#60a5fa' }}>{delTarget.role}</p>
             </div>
           </div>
           <p style={{ fontSize: 13, color: 'hsl(40 6% 70%)', marginBottom: 20 }}>

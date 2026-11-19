@@ -26,7 +26,7 @@ interface AdminLoan {
 const FILTERS = ['Pending', 'Active', 'Repaid', 'Rejected', 'All'] as const
 const STATUS_STYLE: Record<AdminLoan['status'], { color: string; bg: string; label: string }> = {
   Pending:  { color: '#f59e0b', bg: 'rgba(245,158,11,0.12)',  label: 'Pending' },
-  Active:   { color: '#fb923c', bg: 'rgba(251,146,60,0.12)',  label: 'Active' },
+  Active:   { color: '#60a5fa', bg: 'rgba(96,165,250,0.12)',  label: 'Active' },
   Repaid:   { color: '#4ade80', bg: 'rgba(74,222,128,0.12)',  label: 'Repaid' },
   Rejected: { color: '#f87171', bg: 'rgba(248,113,113,0.12)', label: 'Declined' },
 }
@@ -80,8 +80,8 @@ export function AdminLoans() {
       <div className="flex items-start justify-between gap-4 mb-6 flex-wrap">
         <div>
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(249,115,22,0.18)', border: '1px solid rgba(249,115,22,0.3)' }}>
-              <Landmark size={18} style={{ color: '#fb923c' }} />
+            <div className="w-9 h-9 rounded-xl flex items-center justify-center" style={{ background: 'rgba(59,130,246,0.18)', border: '1px solid rgba(59,130,246,0.3)' }}>
+              <Landmark size={18} style={{ color: '#60a5fa' }} />
             </div>
             <h1 className="text-2xl font-semibold tracking-tight">Loans</h1>
           </div>
@@ -96,7 +96,7 @@ export function AdminLoans() {
 
       {flash && (
         <div className="fixed top-5 right-5 z-50 flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium"
-          style={{ background: 'rgba(249,115,22,0.15)', border: '1px solid rgba(249,115,22,0.3)', color: '#fb923c' }}>
+          style={{ background: 'rgba(59,130,246,0.15)', border: '1px solid rgba(59,130,246,0.3)', color: '#60a5fa' }}>
           <Check size={14} /> {flash}
         </div>
       )}
@@ -111,7 +111,7 @@ export function AdminLoans() {
         {FILTERS.map(f => (
           <button key={f} onClick={() => setFilter(f)} className="px-3.5 py-1.5 rounded-lg text-xs font-medium"
             style={filter === f
-              ? { background: 'rgba(249,115,22,0.15)', color: '#fb923c', border: '1px solid rgba(249,115,22,0.35)' }
+              ? { background: 'rgba(59,130,246,0.15)', color: '#60a5fa', border: '1px solid rgba(59,130,246,0.35)' }
               : { background: 'rgba(255,255,255,0.04)', color: 'hsl(240 5% 65%)', border: '1px solid rgba(255,255,255,0.08)' }}>
             {f === 'Rejected' ? 'Declined' : f}
           </button>
@@ -202,7 +202,7 @@ export function AdminLoans() {
 
       {declining && (
         <div onClick={() => setDeclining(null)} className="fixed inset-0 z-50 flex items-center justify-center p-4" style={{ background: 'rgba(0,0,0,0.65)' }}>
-          <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl p-6" style={{ background: 'hsl(20 12% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div onClick={e => e.stopPropagation()} className="w-full max-w-md rounded-2xl p-6" style={{ background: 'hsl(222 60% 6%)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <h3 className="text-lg font-semibold mb-1">Decline loan</h3>
             <p className="text-sm mb-4" style={{ color: 'hsl(240 5% 65%)' }}>
               {declining.user ? `${declining.user.firstName} ${declining.user.lastName}` : 'User'} · {declining.planName} · {fmt(declining.amount)}

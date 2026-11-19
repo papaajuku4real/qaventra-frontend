@@ -18,7 +18,7 @@ const NAV = [
     items: [
       { label: 'Dashboard',         path: '/dashboard',                   icon: LayoutDashboard },
       { label: 'Account Statement', path: '/dashboard/statement',         icon: FileText },
-      { label: 'Trade',             path: '/dashboard/trade',             icon: CandlestickChart, badge: { label: 'Live', color: '#fb923c', bg: 'rgba(251,146,60,0.12)' } },
+      { label: 'Trade',             path: '/dashboard/trade',             icon: CandlestickChart, badge: { label: 'Live', color: '#60a5fa', bg: 'rgba(96,165,250,0.12)' } },
     ],
   },
   {
@@ -32,8 +32,8 @@ const NAV = [
   {
     section: 'TRADING & MARKETS',
     items: [
-      { label: 'Live Markets',      path: '/dashboard/markets',           icon: Activity,  badge: { label: 'Live',    color: '#ea580c', bg: 'rgba(234,88,12,0.15)' } },
-      { label: 'Copy Traders',      path: '/dashboard/copy-trading',      icon: Copy,      badge: { label: 'Pro',     color: '#fb923c', bg: 'rgba(251,146,60,0.15)' } },
+      { label: 'Live Markets',      path: '/dashboard/markets',           icon: Activity,  badge: { label: 'Live',    color: '#2563eb', bg: 'rgba(37,99,235,0.15)' } },
+      { label: 'Copy Traders',      path: '/dashboard/copy-trading',      icon: Copy,      badge: { label: 'Pro',     color: '#60a5fa', bg: 'rgba(96,165,250,0.15)' } },
       { label: 'AI Trading Bots',   path: '/dashboard/ai-bots',           icon: Bot,       badge: { label: 'AI',      color: '#94a3b8', bg: 'rgba(148,163,184,0.15)' } },
       { label: 'Mining',            path: '/dashboard/mining',            icon: Pickaxe,   badge: { label: 'New',     color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' } },
     ],
@@ -55,17 +55,17 @@ const NAV = [
   {
     section: 'REAL ESTATE',
     items: [
-      { label: 'Property Listing', path: '/dashboard/properties', icon: Building2, badge: { label: 'New', color: '#fb923c', bg: 'rgba(251,146,60,0.12)' } },
+      { label: 'Property Listing', path: '/dashboard/properties', icon: Building2, badge: { label: 'New', color: '#60a5fa', bg: 'rgba(96,165,250,0.12)' } },
     ],
   },
 ]
 
 // ─── Notification type colours ────────────────────────────────────────────────
 const NOTIF_DOT: Record<string, string> = {
-  SUCCESS: '#fb923c',
+  SUCCESS: '#60a5fa',
   ERROR:   '#f87171',
   WARNING: '#f59e0b',
-  INFO:    '#fb923c',
+  INFO:    '#60a5fa',
 }
 
 function timeAgo(dateStr: string): string {
@@ -180,7 +180,7 @@ export function DashboardLayout() {
         className={`apex-sidebar fixed top-0 left-0 h-full z-50 flex flex-col transition-transform duration-300 md:relative md:!translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
         style={{
           width: 260,
-          background: 'hsl(20 12% 2.5%)',
+          background: 'hsl(222 87% 2.5%)',
           borderRight: '1px solid rgba(255,255,255,0.06)',
           flexShrink: 0,
         }}
@@ -190,15 +190,15 @@ export function DashboardLayout() {
           <img src={logoImg} alt="logo" style={{ height: 52, maxWidth: 160, objectFit: 'contain', objectPosition: 'left' }} />
           <span style={{
             fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
-            background: 'rgba(234,88,12,0.15)', color: '#fb923c',
+            background: 'rgba(37,99,235,0.15)', color: '#60a5fa',
             padding: '3px 8px', borderRadius: 999, flexShrink: 0,
             display: 'flex', alignItems: 'center', gap: 5,
           }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fb923c', display: 'inline-block', animation: 'liveBlink 1.2s ease-in-out infinite' }} />
+            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#60a5fa', display: 'inline-block', animation: 'liveBlink 1.2s ease-in-out infinite' }} />
             LIVE
           </span>
         </div>
-        <style>{`@keyframes liveBlink { 0%,100%{opacity:1;box-shadow:0 0 6px #fb923c} 50%{opacity:0.2;box-shadow:none} }`}</style>
+        <style>{`@keyframes liveBlink { 0%,100%{opacity:1;box-shadow:0 0 6px #60a5fa} 50%{opacity:0.2;box-shadow:none} }`}</style>
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto py-4 px-3" style={{ scrollbarWidth: 'none' }}>
@@ -221,8 +221,8 @@ export function DashboardLayout() {
                     padding: '0.5rem 0.625rem', borderRadius: '0.6rem',
                     marginBottom: '0.125rem', cursor: isRestricted ? 'not-allowed' : 'pointer',
                     textDecoration: 'none', fontSize: '0.8125rem', fontWeight: 500,
-                    background: isActive && !isRestricted ? 'rgba(251,146,60,0.2)' : 'transparent',
-                    color: isRestricted ? 'hsl(240 5% 35%)' : isActive ? '#fdba74' : 'hsl(240 5% 60%)',
+                    background: isActive && !isRestricted ? 'rgba(96,165,250,0.2)' : 'transparent',
+                    color: isRestricted ? 'hsl(240 5% 35%)' : isActive ? '#93c5fd' : 'hsl(240 5% 60%)',
                     transition: 'all 0.15s ease',
                     pointerEvents: isRestricted ? 'none' : 'auto',
                     opacity: isRestricted ? 0.4 : 1,
@@ -301,7 +301,7 @@ export function DashboardLayout() {
                 <div className="apex-dropdown" style={{
                   position: 'absolute', top: 'calc(100% + 10px)', right: 0,
                   width: 'min(340px, calc(100vw - 24px))', borderRadius: 14, zIndex: 200,
-                  background: 'hsl(20 12% 5%)',
+                  background: 'hsl(222 87% 5%)',
                   border: '1px solid rgba(255,255,255,0.1)',
                   boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
                   overflow: 'hidden',
@@ -328,7 +328,7 @@ export function DashboardLayout() {
                     {unreadCount > 0 && (
                       <button
                         onClick={handleMarkAllRead}
-                        style={{ fontSize: 11, fontWeight: 600, color: '#fb923c', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                        style={{ fontSize: 11, fontWeight: 600, color: '#60a5fa', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
                       >
                         Mark all read
                       </button>
@@ -341,7 +341,7 @@ export function DashboardLayout() {
                     {/* Loading */}
                     {notifLoading && (
                       <div style={{ padding: '32px 0', display: 'flex', justifyContent: 'center' }}>
-                        <div style={{ width: 20, height: 20, border: '2px solid rgba(251,146,60,0.2)', borderTopColor: '#fb923c', borderRadius: '50%', animation: 'notifSpin 0.7s linear infinite' }} />
+                        <div style={{ width: 20, height: 20, border: '2px solid rgba(96,165,250,0.2)', borderTopColor: '#60a5fa', borderRadius: '50%', animation: 'notifSpin 0.7s linear infinite' }} />
                         <style>{`@keyframes notifSpin { to { transform: rotate(360deg) } }`}</style>
                       </div>
                     )}
@@ -357,22 +357,25 @@ export function DashboardLayout() {
 
                     {/* Notification rows */}
                     {!notifLoading && notifications.map((n, i) => {
-                      const dot = NOTIF_DOT[n.type] ?? '#fb923c'
+                      const dot = NOTIF_DOT[n.type] ?? '#60a5fa'
                       return (
                         <div
                           key={n.id}
-                          onClick={() => !n.isRead && handleMarkOneRead(n.id)}
+                          onClick={() => {
+                            if (!n.isRead) handleMarkOneRead(n.id)
+                            if (n.link) { setNotifOpen(false); navigate(n.link) }
+                          }}
                           style={{
                             display: 'flex', alignItems: 'flex-start', gap: 11,
                             padding: '11px 14px',
-                            background: n.isRead ? 'transparent' : 'rgba(251,146,60,0.04)',
+                            background: n.isRead ? 'transparent' : 'rgba(96,165,250,0.04)',
                             borderBottom: i < notifications.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none',
                             cursor: n.isRead ? 'default' : 'pointer',
                             transition: 'background 0.12s',
                             position: 'relative',
                           }}
                           onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
-                          onMouseLeave={e => (e.currentTarget.style.background = n.isRead ? 'transparent' : 'rgba(251,146,60,0.04)')}
+                          onMouseLeave={e => (e.currentTarget.style.background = n.isRead ? 'transparent' : 'rgba(96,165,250,0.04)')}
                         >
                           {/* Colour dot */}
                           <div style={{
@@ -456,7 +459,7 @@ export function DashboardLayout() {
                 <div className="apex-dropdown" style={{
                   position: 'absolute', top: 'calc(100% + 10px)', right: 0,
                   width: 'min(260px, calc(100vw - 24px))', borderRadius: 14, zIndex: 200,
-                  background: 'hsl(20 12% 5%)',
+                  background: 'hsl(222 87% 5%)',
                   border: '1px solid rgba(255,255,255,0.1)',
                   boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
                   overflow: 'hidden',
@@ -471,17 +474,17 @@ export function DashboardLayout() {
                   {/* Items */}
                   {[
                     {
-                      icon: UserCircle2, iconColor: '#fb923c', iconBg: 'rgba(251,146,60,0.18)',
+                      icon: UserCircle2, iconColor: '#60a5fa', iconBg: 'rgba(96,165,250,0.18)',
                       label: 'Profile Settings',  sub: 'Update display name & avatar',
                       path: '/dashboard/settings/profile',
                     },
                     {
-                      icon: SlidersHorizontal, iconColor: '#fb923c', iconBg: 'rgba(251,146,60,0.15)',
+                      icon: SlidersHorizontal, iconColor: '#60a5fa', iconBg: 'rgba(96,165,250,0.15)',
                       label: 'Profile Update',    sub: 'Edit personal & contact info',
                       path: '/dashboard/settings/update',
                     },
                     {
-                      icon: ShieldCheck, iconColor: '#fb923c', iconBg: 'rgba(251,146,60,0.15)',
+                      icon: ShieldCheck, iconColor: '#60a5fa', iconBg: 'rgba(96,165,250,0.15)',
                       label: 'KYC Verification',  sub: 'Verify your identity',
                       badge: 'Pending',
                       path: '/dashboard/settings/kyc',
@@ -497,7 +500,7 @@ export function DashboardLayout() {
                       path: '/dashboard/settings/security',
                     },
                     {
-                      icon: Globe, iconColor: '#fb923c', iconBg: 'rgba(251,146,60,0.15)',
+                      icon: Globe, iconColor: '#38bdf8', iconBg: 'rgba(56,189,248,0.15)',
                       label: 'Language & Region', sub: 'Timezone and locale',
                       path: '/dashboard/settings/locale',
                     },
@@ -553,10 +556,10 @@ export function DashboardLayout() {
                 onClick={() => { setAccountOpen(o => !o); setNotifOpen(false); setSettingsOpen(false) }}
                 style={{
                   width: 32, height: 32, borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #fb923c 0%, #ea580c 100%)',
+                  background: 'linear-gradient(135deg, #60a5fa 0%, #22d3ee 100%)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: 12, fontWeight: 700, color: '#050505', flexShrink: 0,
-                  border: accountOpen ? '2px solid rgba(251,146,60,0.6)' : '2px solid transparent',
+                  border: accountOpen ? '2px solid rgba(96,165,250,0.6)' : '2px solid transparent',
                   cursor: 'pointer', transition: 'border-color 0.15s',
                   outline: 'none',
                 }}
@@ -569,7 +572,7 @@ export function DashboardLayout() {
                 <div className="apex-dropdown" style={{
                   position: 'absolute', top: 'calc(100% + 10px)', right: 0,
                   width: 'min(240px, calc(100vw - 24px))', borderRadius: 14, zIndex: 200,
-                  background: 'hsl(20 12% 5%)',
+                  background: 'hsl(222 87% 5%)',
                   border: '1px solid rgba(255,255,255,0.1)',
                   boxShadow: '0 16px 48px rgba(0,0,0,0.5)',
                   overflow: 'hidden',
@@ -595,17 +598,17 @@ export function DashboardLayout() {
                     onClick={() => { setAccountOpen(false); navigate('/dashboard/settings/profile') }}
                     style={{
                       width: 'calc(100% - 12px)', display: 'flex', alignItems: 'center', gap: 12,
-                      padding: '10px 14px', background: 'rgba(251,146,60,0.12)',
+                      padding: '10px 14px', background: 'rgba(96,165,250,0.12)',
                       border: 'none', cursor: 'pointer', textAlign: 'left',
                       borderRadius: 8, margin: '0 6px',
                     }}
                   >
                     <div style={{
                       width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-                      background: 'rgba(251,146,60,0.2)',
+                      background: 'rgba(96,165,250,0.2)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <UserCircle2 size={18} style={{ color: '#fb923c' }} />
+                      <UserCircle2 size={18} style={{ color: '#60a5fa' }} />
                     </div>
                     <div>
                       <p style={{ fontSize: 13, fontWeight: 700, color: 'hsl(40 10% 95%)', lineHeight: 1.2 }}>Profile</p>
@@ -631,10 +634,10 @@ export function DashboardLayout() {
                   >
                     <div style={{
                       width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-                      background: 'rgba(249,115,22,0.15)',
+                      background: 'rgba(59,130,246,0.15)',
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}>
-                      <KeyRound size={16} style={{ color: '#fb923c' }} />
+                      <KeyRound size={16} style={{ color: '#60a5fa' }} />
                     </div>
                     <div>
                       <p style={{ fontSize: 13, fontWeight: 700, color: 'hsl(40 10% 95%)', lineHeight: 1.2 }}>API Management</p>
@@ -684,7 +687,7 @@ export function DashboardLayout() {
           {isSuspended && (
             <div style={{
               position: 'fixed', inset: 0, zIndex: 100,
-              background: 'rgba(8,7,6, 0.85)',
+              background: 'rgba(2,5,12, 0.85)',
               backdropFilter: 'blur(6px)',
               WebkitBackdropFilter: 'blur(6px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -692,8 +695,8 @@ export function DashboardLayout() {
             }}>
               <div style={{
                 maxWidth: 460, width: '100%', textAlign: 'center',
-                background: 'hsl(20 12% 5%)',
-                border: '1px solid rgba(251,146,60,0.3)',
+                background: 'hsl(222 60% 5%)',
+                border: '1px solid rgba(96,165,250,0.3)',
                 borderRadius: 20,
                 padding: '2.5rem 2rem',
                 boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
@@ -701,12 +704,12 @@ export function DashboardLayout() {
                 {/* Icon */}
                 <div style={{
                   width: 64, height: 64, borderRadius: '50%',
-                  background: 'rgba(251,146,60,0.12)',
-                  border: '1px solid rgba(251,146,60,0.35)',
+                  background: 'rgba(96,165,250,0.12)',
+                  border: '1px solid rgba(96,165,250,0.35)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   margin: '0 auto 1.25rem',
                 }}>
-                  <ShieldOff size={28} style={{ color: '#fb923c' }} />
+                  <ShieldOff size={28} style={{ color: '#60a5fa' }} />
                 </div>
 
                 {/* Title */}
@@ -726,12 +729,12 @@ export function DashboardLayout() {
                 <div style={{
                   display: 'inline-flex', alignItems: 'center', gap: 7,
                   padding: '6px 14px', borderRadius: 999,
-                  background: 'rgba(251,146,60,0.1)',
-                  border: '1px solid rgba(251,146,60,0.3)',
+                  background: 'rgba(96,165,250,0.1)',
+                  border: '1px solid rgba(96,165,250,0.3)',
                   marginBottom: 28,
                 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#fb923c', display: 'inline-block' }} />
-                  <span style={{ fontSize: 12, fontWeight: 700, color: '#fb923c', letterSpacing: '0.04em' }}>ACCOUNT SUSPENDED</span>
+                  <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#60a5fa', display: 'inline-block' }} />
+                  <span style={{ fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '0.04em' }}>ACCOUNT SUSPENDED</span>
                 </div>
 
                 {/* Buttons */}
@@ -741,9 +744,9 @@ export function DashboardLayout() {
                     style={{
                       display: 'flex', alignItems: 'center', gap: 7,
                       padding: '10px 20px', borderRadius: 10,
-                      background: 'rgba(251,146,60,0.12)',
-                      border: '1px solid rgba(251,146,60,0.28)',
-                      color: '#fb923c', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                      background: 'rgba(96,165,250,0.12)',
+                      border: '1px solid rgba(96,165,250,0.28)',
+                      color: '#60a5fa', fontSize: 13, fontWeight: 700, cursor: 'pointer',
                     }}
                   >
                     <HeadphonesIcon size={14} /> Contact Support
@@ -769,7 +772,7 @@ export function DashboardLayout() {
           {isPending && (
             <div style={{
               position: 'fixed', inset: 0, zIndex: 100,
-              background: 'rgba(8,7,6, 0.82)',
+              background: 'rgba(2,5,12, 0.82)',
               backdropFilter: 'blur(6px)',
               WebkitBackdropFilter: 'blur(6px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -777,7 +780,7 @@ export function DashboardLayout() {
             }}>
               <div style={{
                 maxWidth: 440, width: '100%', textAlign: 'center',
-                background: 'hsl(20 12% 5%)',
+                background: 'hsl(222 60% 5%)',
                 border: '1px solid rgba(245,158,11,0.25)',
                 borderRadius: 20,
                 padding: '2.5rem 2rem',
@@ -826,9 +829,9 @@ export function DashboardLayout() {
                     style={{
                       display: 'flex', alignItems: 'center', gap: 7,
                       padding: '10px 20px', borderRadius: 10,
-                      background: 'rgba(251,146,60,0.12)',
-                      border: '1px solid rgba(251,146,60,0.28)',
-                      color: '#fb923c', fontSize: 13, fontWeight: 700, cursor: 'pointer',
+                      background: 'rgba(96,165,250,0.12)',
+                      border: '1px solid rgba(96,165,250,0.28)',
+                      color: '#60a5fa', fontSize: 13, fontWeight: 700, cursor: 'pointer',
                     }}
                   >
                     <HeadphonesIcon size={14} /> Contact Support
