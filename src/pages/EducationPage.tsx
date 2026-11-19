@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { usePlatformName } from '@/context/PlatformNameContext'
 import { BookOpen, Video, GraduationCap, TrendingUp, BarChart2, Shield, ChevronDown } from 'lucide-react'
 import { PageBackground } from '@/components/ui/PageBackground'
@@ -44,6 +45,8 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 function HeroSection() {
+  const navigate = useNavigate()
+  const toRegister = () => navigate('/register')
   return (
     <section className="relative w-full overflow-hidden pt-6 pb-24 sm:pb-32">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] pointer-events-none" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(96,165,250,0.07) 0%, transparent 70%)' }} />
@@ -62,8 +65,8 @@ function HeroSection() {
             From your very first chart to advanced professional strategies — a structured curriculum built by traders, for traders.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mt-7 sm:mt-8">
-            <Button variant="hero">Start Learning Free</Button>
-            <Button variant="heroSecondary">Browse All Courses</Button>
+            <Button variant="hero" onClick={() => navigate('/education/beginners')}>Start Learning Free</Button>
+            <Button variant="heroSecondary" onClick={toRegister}>Browse All Courses</Button>
           </div>
         </Reveal>
       </div>
@@ -72,6 +75,8 @@ function HeroSection() {
 }
 
 function LearningPathsSection() {
+  const navigate = useNavigate()
+  const toRegister = () => navigate('/register')
   return (
     <section className="py-16 sm:py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -105,7 +110,7 @@ function LearningPathsSection() {
                     </li>
                   ))}
                 </ul>
-                <Button variant="heroSecondary" className="w-full justify-center mt-auto">Start {level} Path</Button>
+                <Button variant="heroSecondary" className="w-full justify-center mt-auto" onClick={() => level === 'Beginner' ? navigate('/education/beginners') : toRegister()}>Start {level} Path</Button>
               </div>
             </Reveal>
           ))}
@@ -116,6 +121,8 @@ function LearningPathsSection() {
 }
 
 function GuidesSection() {
+  const navigate = useNavigate()
+  const toRegister = () => navigate('/register')
   return (
     <section className="py-16 sm:py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -129,12 +136,12 @@ function GuidesSection() {
               <p className="text-muted-foreground text-sm sm:text-base mt-2 max-w-sm">Short, practical reads on the markets, strategies, and mindset topics that matter most.</p>
             </div>
           </Reveal>
-          <Button variant="heroSecondary" className="shrink-0 self-start sm:self-auto">View All Guides</Button>
+          <Button variant="heroSecondary" className="shrink-0 self-start sm:self-auto" onClick={toRegister}>View All Guides</Button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {GUIDES.map(({ category, title, readTime, desc }, i) => (
             <Reveal key={title} delay={i * 80}>
-              <div className="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col gap-4 hover:bg-white/[0.03] transition-colors cursor-pointer">
+              <div className="liquid-glass rounded-3xl p-6 sm:p-7 flex flex-col gap-4 hover:bg-white/[0.03] transition-colors cursor-pointer" onClick={toRegister}>
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-semibold px-3 py-1 rounded-full" style={{ background: 'rgba(96,165,250,0.1)', color: '#60a5fa' }}>{category}</span>
                   <span className="text-xs text-muted-foreground">{readTime}</span>
@@ -151,6 +158,8 @@ function GuidesSection() {
 }
 
 function VideoCoursesSection() {
+  const navigate = useNavigate()
+  const toRegister = () => navigate('/register')
   return (
     <section className="py-16 sm:py-24 px-4">
       <div className="max-w-6xl mx-auto">
@@ -177,7 +186,7 @@ function VideoCoursesSection() {
                   <span className="w-1 h-1 rounded-full bg-border" />
                   <span className="text-xs text-muted-foreground">{duration}</span>
                 </div>
-                <Button variant="heroSecondary" className="w-full justify-center">Watch Now</Button>
+                <Button variant="heroSecondary" className="w-full justify-center" onClick={toRegister}>Watch Now</Button>
               </div>
             </Reveal>
           ))}
@@ -216,6 +225,8 @@ function FAQSection() {
 }
 
 function CTASection() {
+  const navigate = useNavigate()
+  const toRegister = () => navigate('/register')
   return (
     <section className="py-16 sm:py-24 px-4">
       <div className="max-w-4xl mx-auto">
@@ -224,8 +235,8 @@ function CTASection() {
             <h2 className="text-hero-heading text-2xl sm:text-5xl font-semibold leading-tight">Start Learning.<br />Start Trading.</h2>
             <p className="text-muted-foreground text-base sm:text-lg max-w-md">Create a free account to unlock every course, guide, and video — plus a practice demo account.</p>
             <div className="flex flex-wrap justify-center gap-4 mt-2">
-              <Button variant="hero">Create Free Account</Button>
-              <Button variant="heroSecondary">Browse Curriculum</Button>
+              <Button variant="hero" onClick={toRegister}>Create Free Account</Button>
+              <Button variant="heroSecondary" onClick={toRegister}>Browse Curriculum</Button>
             </div>
           </div>
         </Reveal>

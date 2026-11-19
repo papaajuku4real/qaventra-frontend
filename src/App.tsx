@@ -21,6 +21,7 @@ import { MarketsPage } from '@/pages/MarketsPage'
 import { TradePage } from '@/pages/TradePage'
 import { PlatformsPage } from '@/pages/PlatformsPage'
 import { EducationPage } from '@/pages/EducationPage'
+import { BeginnersPage } from '@/pages/BeginnersPage'
 import { TermsPage } from '@/pages/TermsPage'
 import { PrivacyPage } from '@/pages/PrivacyPage'
 import { CookiesPage } from '@/pages/CookiesPage'
@@ -156,6 +157,7 @@ function App() {
       <Route path="/trade" element={<TradePage />} />
       <Route path="/platforms" element={<PlatformsPage />} />
       <Route path="/education" element={<EducationPage />} />
+      <Route path="/education/beginners" element={<BeginnersPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/cookies" element={<CookiesPage />} />
