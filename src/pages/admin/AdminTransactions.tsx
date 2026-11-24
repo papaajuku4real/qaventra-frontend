@@ -276,7 +276,7 @@ export function AdminTransactions() {
                 {filtered.map(tx => {
                   const tm   = TYPE_META[tx.type]     ?? { c: '#94a3b8', bg: 'rgba(148,163,184,0.1)', label: tx.type }
                   const st   = STATUS_META[tx.status]  ?? { c: '#94a3b8', bg: 'rgba(148,163,184,0.1)', label: tx.status, icon: Clock }
-                  const isOut = tx.type === 'WITHDRAWAL'
+                  const isOut = tx.type === 'WITHDRAWAL' || Number(tx.amount) < 0
                   const col  = avatarColor(tx.user.email)
                   const ini  = `${tx.user.firstName?.[0] ?? ''}${tx.user.lastName?.[0] ?? ''}`.toUpperCase()
                   const busy = actionId === tx.id
@@ -305,7 +305,7 @@ export function AdminTransactions() {
                       </td>
 
                       <td style={{ padding: '11px 14px', fontSize: 12.5, fontWeight: 700, color: isOut ? '#f87171' : '#60a5fa', whiteSpace: 'nowrap' }}>
-                        {isOut ? '−' : '+'} ${Number(tx.amount).toLocaleString()}
+                        {isOut ? '−' : '+'} ${Math.abs(Number(tx.amount)).toLocaleString()}
                       </td>
 
                       <td style={{ padding: '11px 14px', fontSize: 11, color: 'hsl(240 5% 48%)', whiteSpace: 'nowrap' }}>

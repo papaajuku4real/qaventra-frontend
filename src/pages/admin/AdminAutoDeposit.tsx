@@ -275,7 +275,7 @@ function RuleForm({
 
       {/* Amount */}
       <div>
-        <label style={labelStyle}>Deposit Amount (USD)</label>
+        <label style={labelStyle}>Profit Amount (USD)</label>
         <div style={{ position: 'relative' }}>
           <span style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: '#60a5fa', fontWeight: 700, fontSize: 13 }}>$</span>
           <input
@@ -293,7 +293,7 @@ function RuleForm({
 
       {/* Interval */}
       <div>
-        <label style={labelStyle}>Deposit Interval</label>
+        <label style={labelStyle}>Profit Interval</label>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 6 }}>
           {INTERVALS.map(i => (
             <button
@@ -456,7 +456,7 @@ export function AdminAutoDeposit() {
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: '1.75rem' }}>
         <div>
           <h1 style={{ fontSize: 22, fontWeight: 800, color: 'hsl(40 10% 94%)', marginBottom: 4 }}>Auto Deposit</h1>
-          <p style={{ fontSize: 13, color: 'hsl(240 5% 50%)' }}>Schedule automatic deposits for users at custom intervals</p>
+          <p style={{ fontSize: 13, color: 'hsl(240 5% 50%)' }}>Schedule automatic profit credits for users at custom intervals</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button
@@ -483,7 +483,7 @@ export function AdminAutoDeposit() {
             { icon: <Pause size={14} />,       label: 'Paused Rules',        value: stats.pausedRules,                        color: '#f59e0b' },
             { icon: <DollarSign size={14} />,  label: 'Per Cycle (Total)',   value: fmt(stats.totalAmountPerCycle),            color: '#60a5fa' },
             { icon: <RefreshCw size={14} />,   label: 'Total Runs',          value: Number(stats.totalRunsAll).toLocaleString(), color: '#60a5fa' },
-            { icon: <DollarSign size={14} />,  label: 'Total Deposited',     value: fmt(stats.totalDeposited),                color: '#60a5fa' },
+            { icon: <DollarSign size={14} />,  label: 'Total Profit Credited', value: fmt(stats.totalDeposited),                color: '#60a5fa' },
           ].map(s => (
             <div key={s.label} style={{ ...card, padding: '1rem 1.25rem', display: 'flex', alignItems: 'center', gap: 12 }}>
               <div style={{ width: 32, height: 32, borderRadius: 9, background: `${s.color}18`, display: 'flex', alignItems: 'center', justifyContent: 'center', color: s.color, flexShrink: 0 }}>

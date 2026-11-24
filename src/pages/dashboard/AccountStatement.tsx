@@ -44,7 +44,7 @@ function amountColor(type: string, amount: number) {
 
 function formatAmount(type: string, amount: number, currency = 'USD') {
   const abs = Math.abs(amount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-  const prefix = type === 'WITHDRAWAL' ? '-' : '+'
+  const prefix = type === 'WITHDRAWAL' || amount < 0 ? '-' : '+'
   return `${prefix}$${abs}`
 }
 

@@ -1015,7 +1015,7 @@ export function DashboardHome() {
                            tx.type === 'BONUS'      ? '#fbbf24'  :
                            'hsl(40 6% 85%)',
                   }}>
-                    {tx.type === 'WITHDRAWAL' ? '-' : '+'}{fmt(tx.amount)}
+                    {tx.type === 'WITHDRAWAL' || tx.amount < 0 ? '-' : '+'}{fmt(Math.abs(tx.amount))}
                   </p>
                 </div>
               ))}

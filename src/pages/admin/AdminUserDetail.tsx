@@ -28,6 +28,7 @@ interface UserDetail {
   totalDeposits:    number
   totalWithdrawals: number
   totalProfit:      number
+  totalBonus?:      number
   tradeProgress?:   number
   signalStrength?:  number
   createdAt:        string
@@ -130,7 +131,7 @@ export function AdminUserDetail() {
   const [deleting,    setDeleting]    = useState(false)
 
   // Quick action modals
-  const [modal,      setModal]      = useState<'deposit'|'withdraw'|'profit'|'balance'|'status'|null>(null)
+  const [modal,      setModal]      = useState<'deposit'|'withdraw'|'profit'|'balance'|'bonus'|'status'|null>(null)
   const [modalAmt,   setModalAmt]   = useState('')
   const [modalNote,  setModalNote]  = useState('')
   const [modalStatus,setModalStatus]= useState('ACTIVE')
@@ -221,6 +222,7 @@ export function AdminUserDetail() {
       if (modal === 'withdraw') await adminApi.post(`/admin/users/${id}/withdraw`, { amount: Number(modalAmt), note: modalNote })
       if (modal === 'profit')   await adminApi.post(`/admin/users/${id}/profit`,   { amount: Number(modalAmt), note: modalNote })
       if (modal === 'balance')  await adminApi.post(`/admin/users/${id}/balance`,  { operation: balanceOp, amount: Number(modalAmt), note: modalNote })
+      if (modal === 'bonus')    await adminApi.post(`/admin/users/${id}/bonus`,    { operation: balanceOp, amount: Number(modalAmt), note: modalNote })
       if (modal === 'status')   await adminApi.post(`/admin/users/${id}/status`,   { status: modalStatus })
       setModal(null); setModalAmt(''); setModalNote(''); setBalanceOp('add')
       load()
@@ -317,7 +319,7 @@ export function AdminUserDetail() {
 
       {/* Quick-action modals */}
       {modal && (
-        <Modal title={modal === 'deposit' ? 'Manual Deposit' : modal === 'withdraw' ? 'Manual Withdrawal' : modal === 'profit' ? 'Credit Profit' : modal === 'balance' ? 'Adjust Balance' : 'Change Status'} onClose={() => { setModal(null); setActMsg(''); setBalanceOp('add') }}>
+        <Modal title={modal === 'deposit' ? 'Manual Deposit' : modal === 'withdraw' ? 'Manual Withdrawal' : modal === 'profit' ? 'Credit Profit' : modal === 'balance' ? 'Adjust Balance' : modal === 'bonus' ? 'Adjust Bonus' : 'Change Status'} onClose={() => { setModal(null); setActMsg(''); setBalanceOp('add') }}>
           {(modal === 'deposit' || modal === 'withdraw' || modal === 'profit') && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <Field label="Amount (USD)">
@@ -328,7 +330,7 @@ export function AdminUserDetail() {
               </Field>
             </div>
           )}
-          {modal === 'balance' && (
+          {(modal === 'balance' || modal === 'bonus') && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {/* Add / Subtract toggle */}
               <Field label="Operation">
@@ -363,8 +365,8 @@ export function AdminUserDetail() {
               {modalAmt && Number(modalAmt) > 0 && user && (
                 <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 8, padding: '10px 14px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'hsl(240 5% 55%)' }}>
-                    <span>Current balance</span>
-                    <span style={{ color: 'hsl(40 6% 80%)' }}>${user.balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                    <span>Current {modal === 'bonus' ? 'bonus' : 'balance'}</span>
+                    <span style={{ color: 'hsl(40 6% 80%)' }}>${(modal === 'bonus' ? (user.totalBonus ?? 0) : user.balance).toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'hsl(240 5% 55%)', marginTop: 4 }}>
                     <span>{balanceOp === 'add' ? 'Adding' : 'Subtracting'}</span>
@@ -373,9 +375,9 @@ export function AdminUserDetail() {
                     </span>
                   </div>
                   <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: 8, paddingTop: 8, display: 'flex', justifyContent: 'space-between', fontSize: 13, fontWeight: 600 }}>
-                    <span style={{ color: 'hsl(40 6% 80%)' }}>New balance</span>
+                    <span style={{ color: 'hsl(40 6% 80%)' }}>New {modal === 'bonus' ? 'bonus' : 'balance'}</span>
                     <span style={{ color: '#60a5fa' }}>
-                      ${Math.max(0, balanceOp === 'add' ? user.balance + Number(modalAmt) : user.balance - Number(modalAmt)).toLocaleString('en-US', { minimumFractionDigits: 2 })}
+                      ${(() => { const cur = modal === 'bonus' ? (user.totalBonus ?? 0) : user.balance; return Math.max(0, balanceOp === 'add' ? cur + Number(modalAmt) : cur - Number(modalAmt)) })().toLocaleString('en-US', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
                 </div>
@@ -503,6 +505,7 @@ export function AdminUserDetail() {
           { label: 'Total Deposited',  value: fmt(user.totalDeposits),    c: '#60a5fa' },
           { label: 'Total Withdrawn',  value: fmt(user.totalWithdrawals), c: '#f87171' },
           { label: 'Total Profit',     value: fmt(user.totalProfit),      c: '#f59e0b' },
+          { label: 'Total Bonus',      value: fmt(user.totalBonus ?? 0),  c: '#f59e0b' },
         ].map(s => (
           <div key={s.label} style={{ background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 13, padding: '14px 18px' }}>
             <p style={{ fontSize: 11, color: 'hsl(240 5% 50%)', marginBottom: 5 }}>{s.label}</p>
@@ -520,6 +523,7 @@ export function AdminUserDetail() {
             { label: '− Withdraw',     icon: DollarSign,  action: 'withdraw' as const, col: '#f87171', bg: 'rgba(248,113,113,0.12)', border: 'rgba(248,113,113,0.25)' },
             { label: '+ Profit',       icon: DollarSign,  action: 'profit'   as const, col: '#4ade80', bg: 'rgba(74,222,128,0.12)',  border: 'rgba(74,222,128,0.25)'  },
             { label: 'Set Balance',    icon: DollarSign,  action: 'balance'  as const, col: '#60a5fa', bg: 'rgba(96,165,250,0.12)',  border: 'rgba(96,165,250,0.25)'  },
+            { label: 'Set Bonus',      icon: DollarSign,  action: 'bonus'    as const, col: '#f59e0b', bg: 'rgba(245,158,11,0.12)',  border: 'rgba(245,158,11,0.25)'  },
             { label: 'Change Status',  icon: ShieldCheck, action: 'status'   as const, col: '#f59e0b', bg: 'rgba(245,158,11,0.12)',  border: 'rgba(245,158,11,0.25)'  },
           ].map(a => (
             <button key={a.action} onClick={() => { setModal(a.action); setActMsg('') }}
@@ -869,6 +873,11 @@ export function AdminUserDetail() {
               {editing
                 ? <input style={inp} type="number" min="0" step="any" value={form.totalProfit ?? user.totalProfit} onChange={e => setForm(f => ({ ...f, totalProfit: Number(e.target.value) }))} />
                 : <p style={{ fontSize: 13, color: 'hsl(40 6% 85%)', padding: '8px 0' }}>{fmt(user.totalProfit)}</p>}
+            </Field>
+            <Field label="Total Bonus">
+              {editing
+                ? <input style={inp} type="number" min="0" step="any" value={form.totalBonus ?? user.totalBonus ?? 0} onChange={e => setForm(f => ({ ...f, totalBonus: Number(e.target.value) }))} />
+                : <p style={{ fontSize: 13, color: 'hsl(40 6% 85%)', padding: '8px 0' }}>{fmt(user.totalBonus ?? 0)}</p>}
             </Field>
           </div>
 
