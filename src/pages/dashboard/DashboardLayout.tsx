@@ -714,15 +714,19 @@ export function DashboardLayout() {
 
                 {/* Title */}
                 <p style={{ fontSize: 20, fontWeight: 800, color: 'hsl(40 6% 94%)', marginBottom: 10 }}>
-                  Account Suspended
+                  Account Temporarily Suspended
                 </p>
 
                 {/* Description */}
                 <p style={{ fontSize: 13, color: 'hsl(240 5% 55%)', lineHeight: 1.7, marginBottom: 8 }}>
-                  Your account has been temporarily suspended due to suspicious activity, a policy violation, or an admin action.
+                  Your account has been temporarily suspended in accordance with our platform’s account management and security policies.
+                </p>
+                <p style={{ fontSize: 13, color: 'hsl(240 5% 55%)', lineHeight: 1.7, marginBottom: 8 }}>
+                  Account restrictions may occur for various reasons, including security reviews, policy compliance checks, verification requirements, administrative decisions, or other operational considerations.
                 </p>
                 <p style={{ fontSize: 13, color: 'hsl(240 5% 55%)', lineHeight: 1.7, marginBottom: 28 }}>
-                  All platform features are disabled during this period. If you believe this is a mistake, please contact our support team for assistance.
+                  All platform features are disabled during this period.<br />
+                  If you believe this is a mistake, please contact our support team for assistance.
                 </p>
 
                 {/* Status pill */}
@@ -734,7 +738,7 @@ export function DashboardLayout() {
                   marginBottom: 28,
                 }}>
                   <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#60a5fa', display: 'inline-block' }} />
-                  <span style={{ fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '0.04em' }}>ACCOUNT SUSPENDED</span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: '#60a5fa', letterSpacing: '0.04em' }}>ACCOUNT TEMPORARILY SUSPENDED</span>
                 </div>
 
                 {/* Buttons */}
