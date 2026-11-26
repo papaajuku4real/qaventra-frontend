@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { usePlatformName } from '@/context/PlatformNameContext'
+import { ContactSupportModal } from '@/components/ContactSupport'
 import { ShieldX, Mail, AlertTriangle } from 'lucide-react'
 import { PageBackground } from '@/components/ui/PageBackground'
 
 export function BannedPage() {
-  const { platformName, platformEmail } = usePlatformName()
+  const { platformName } = usePlatformName()
+  const [supportOpen, setSupportOpen] = useState(false)
   return (
     <div
       style={{
@@ -166,8 +169,9 @@ export function BannedPage() {
         </div>
 
         {/* Contact button */}
-        <a
-          href={`mailto:${platformEmail}`}
+        <button
+          type="button"
+          onClick={() => setSupportOpen(true)}
           style={{
             display:        'inline-flex',
             alignItems:     'center',
@@ -181,24 +185,23 @@ export function BannedPage() {
             color:          '#fca5a5',
             fontSize:       '0.9rem',
             fontWeight:     500,
-            textDecoration: 'none',
             cursor:         'pointer',
             transition:     'all 0.2s ease',
           }}
           onMouseEnter={e => {
-            const el = e.currentTarget as HTMLAnchorElement
+            const el = e.currentTarget as HTMLButtonElement
             el.style.background = 'rgba(220,38,38,0.18)'
             el.style.borderColor = 'rgba(220,38,38,0.4)'
           }}
           onMouseLeave={e => {
-            const el = e.currentTarget as HTMLAnchorElement
+            const el = e.currentTarget as HTMLButtonElement
             el.style.background = 'rgba(220,38,38,0.1)'
             el.style.borderColor = 'rgba(220,38,38,0.25)'
           }}
         >
           <Mail size={16} />
           Contact Support
-        </a>
+        </button>
 
         {/* Footer note */}
         <p
@@ -212,6 +215,10 @@ export function BannedPage() {
           © 2026 {platformName} Inc. · All access to this platform has been revoked.
         </p>
       </div>
+
+      {supportOpen && (
+        <ContactSupportModal source="banned" askIdentity defaultSubject="Account banned" onClose={() => setSupportOpen(false)} />
+      )}
     </div>
   )
 }

@@ -4,6 +4,7 @@ import { api } from '@/lib/api'
 import { useAuth } from '@/context/AuthContext'
 import logoImg from '@/assets/logo.png'
 import { LanguageSwitcher } from '@/components/LanguageSwitcher'
+import { ContactSupportModal } from '@/components/ContactSupport'
 import {
   LayoutDashboard, FileText, TrendingUp, Briefcase, BarChart2,
   Activity, Copy, Bot, Zap, Download, ArrowUpRight, Menu, LogOut,
@@ -88,6 +89,7 @@ export function DashboardLayout() {
   const [sidebarOpen,  setSidebarOpen]  = useState(false)
   const [accountOpen,  setAccountOpen]  = useState(false)
   const [notifOpen,    setNotifOpen]    = useState(false)
+  const [supportOpen,  setSupportOpen]  = useState(false)
   const [settingsOpen, setSettingsOpen] = useState(false)
   const accountRef  = useRef<HTMLDivElement>(null)
   const notifRef    = useRef<HTMLDivElement>(null)
@@ -744,7 +746,7 @@ export function DashboardLayout() {
                 {/* Buttons */}
                 <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
                   <button
-                    onClick={() => navigate('/dashboard/settings/support')}
+                    onClick={() => setSupportOpen(true)}
                     style={{
                       display: 'flex', alignItems: 'center', gap: 7,
                       padding: '10px 20px', borderRadius: 10,
@@ -770,6 +772,10 @@ export function DashboardLayout() {
                 </div>
               </div>
             </div>
+          )}
+
+          {isSuspended && supportOpen && (
+            <ContactSupportModal source="suspended" defaultSubject="Account suspended" onClose={() => setSupportOpen(false)} />
           )}
 
           {/* ── PENDING ACCOUNT OVERLAY ── */}

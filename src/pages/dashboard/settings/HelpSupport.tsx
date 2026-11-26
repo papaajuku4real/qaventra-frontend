@@ -2,6 +2,7 @@ import { usePlatformName } from '@/context/PlatformNameContext'
 import { useState } from 'react'
 import { ArrowLeft, ChevronDown, MessageCircle, Mail, Phone, FileText, ExternalLink, Send, CheckCircle2, Search, BookOpen, Zap, Shield } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { ContactSupportForm } from '@/components/ContactSupport'
 
 interface FAQ { q: string; a: string }
 
@@ -53,9 +54,6 @@ export function HelpSupport() {
   const [openFaq, setOpenFaq] = useState<string | null>(null)
   const [search, setSearch]   = useState('')
   const [category, setCategory] = useState('All')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [sent, setSent]       = useState(false)
 
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '10px 14px', borderRadius: 10, fontSize: 13,
@@ -75,10 +73,8 @@ export function HelpSupport() {
     }))
     .filter(g => g.items.length > 0)
 
-  function handleSend() {
-    if (!subject || !message) return
-    setSent(true)
-    setTimeout(() => { setSent(false); setSubject(''); setMessage('') }, 3500)
+  function handleChannel(label: string) {
+    if (label === 'Email Support') document.getElementById('contact-support')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
@@ -104,7 +100,7 @@ export function HelpSupport() {
               <p style={{ fontSize: 13, fontWeight: 700, color: 'hsl(40 6% 88%)' }}>{ch.label}</p>
               <p style={{ fontSize: 11, color: 'hsl(240 5% 50%)', marginTop: 2 }}>{ch.sub}</p>
             </div>
-            <button style={{ width: '100%', padding: '8px', borderRadius: 8, background: ch.available ? ch.bg : 'rgba(255,255,255,0.03)', border: `1px solid ${ch.available ? ch.color + '33' : 'rgba(255,255,255,0.06)'}`, color: ch.available ? ch.color : 'hsl(240 5% 40%)', fontSize: 12, fontWeight: 700, cursor: ch.available ? 'pointer' : 'default' }}>
+            <button onClick={() => ch.available && handleChannel(ch.label)} style={{ width: '100%', padding: '8px', borderRadius: 8, background: ch.available ? ch.bg : 'rgba(255,255,255,0.03)', border: `1px solid ${ch.available ? ch.color + '33' : 'rgba(255,255,255,0.06)'}`, color: ch.available ? ch.color : 'hsl(240 5% 40%)', fontSize: 12, fontWeight: 700, cursor: ch.available ? 'pointer' : 'default' }}>
               {ch.available ? ch.cta : 'Unavailable'}
             </button>
           </div>
@@ -194,34 +190,12 @@ export function HelpSupport() {
       </div>
 
       {/* Contact Form */}
-      <div style={{ background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: 24, marginBottom: 20 }}>
+      <div id="contact-support" style={{ scrollMarginTop: 16, background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 16, padding: 24, marginBottom: 20 }}>
         <p style={{ fontSize: 14, fontWeight: 700, color: 'hsl(40 10% 94%)', marginBottom: 4 }}>Contact Support</p>
         <p style={{ fontSize: 12, color: 'hsl(240 5% 52%)', marginBottom: 16 }}>Couldn't find your answer? We'll get back to you within 24 hours.</p>
         <div style={{ height: 1, background: 'rgba(255,255,255,0.06)', marginBottom: 20 }} />
 
-        {sent ? (
-          <div style={{ textAlign: 'center', padding: '20px 0' }}>
-            <CheckCircle2 size={40} style={{ color: '#60a5fa', margin: '0 auto 12px' }} />
-            <p style={{ fontSize: 15, fontWeight: 700, color: '#60a5fa', marginBottom: 6 }}>Message Sent!</p>
-            <p style={{ fontSize: 12, color: 'hsl(240 5% 52%)' }}>Our support team will respond within 24 hours.</p>
-          </div>
-        ) : (
-          <>
-            <div style={{ marginBottom: 16 }}>
-              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'hsl(240 5% 50%)', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>SUBJECT</label>
-              <input value={subject} onChange={e => setSubject(e.target.value)} placeholder="e.g. Issue with withdrawal" style={{ ...inputStyle, height: 42 }} />
-            </div>
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'hsl(240 5% 50%)', marginBottom: 6, letterSpacing: '0.05em', textTransform: 'uppercase' }}>MESSAGE</label>
-              <textarea value={message} onChange={e => setMessage(e.target.value)} rows={5} placeholder="Describe your issue in detail..." style={{ ...inputStyle, height: 'auto', paddingTop: 12, paddingBottom: 12, resize: 'vertical', lineHeight: 1.6 }} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button onClick={handleSend} disabled={!subject || !message} style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '10px 22px', borderRadius: 10, background: subject && message ? 'linear-gradient(135deg,#2563eb,#1d4ed8)' : 'rgba(255,255,255,0.05)', border: 'none', color: subject && message ? '#fff' : 'hsl(240 5% 40%)', fontSize: 13, fontWeight: 700, cursor: subject && message ? 'pointer' : 'default', transition: 'all 0.2s' }}>
-                <Send size={13} /> Send Message
-              </button>
-            </div>
-          </>
-        )}
+        <ContactSupportForm source="help" />
       </div>
     </div>
   )

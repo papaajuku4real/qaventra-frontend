@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext'
 import { useLogo } from '@/context/LogoContext'
 import { usePlatformName } from '@/context/PlatformNameContext'
 import { PageBackground } from '@/components/ui/PageBackground'
+import { ContactSupportModal } from '@/components/ContactSupport'
 
 export default function LoginPage() {
   const { login } = useAuth()
@@ -19,6 +20,7 @@ export default function LoginPage() {
   const [showPw,   setShowPw]   = useState(false)
   const [loading,  setLoading]  = useState(false)
   const [error,    setError]    = useState('')
+  const [supportOpen, setSupportOpen] = useState(false)
   const [attempts, setAttempts] = useState(0)
   const [shake,    setShake]    = useState(false)
 
@@ -89,7 +91,13 @@ export default function LoginPage() {
             <div className="flex items-center gap-2 mb-5 px-4 py-3 rounded-xl text-sm"
               style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', color: '#f87171' }}>
               <AlertCircle size={14} /> {error}
-              {attempts > 0 && attempts < 5 && (
+              {/suspended/i.test(error) ? (
+                <button type="button" onClick={() => setSupportOpen(true)}
+                  className="ml-auto text-xs font-semibold px-3 py-1.5 rounded-lg whitespace-nowrap"
+                  style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.35)', color: '#fca5a5' }}>
+                  Contact Support
+                </button>
+              ) : attempts > 0 && attempts < 5 && (
                 <span className="ml-auto text-xs opacity-70">{5 - attempts} attempts left</span>
               )}
             </div>
@@ -171,6 +179,10 @@ export default function LoginPage() {
 
         </div>
       </div>
+
+      {supportOpen && (
+        <ContactSupportModal source="suspended" askIdentity defaultEmail={email} defaultSubject="Account suspended" onClose={() => setSupportOpen(false)} />
+      )}
 
       <style>{`
         @keyframes shake {
