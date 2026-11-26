@@ -1,13 +1,12 @@
 import { usePlatformName } from '@/context/PlatformNameContext'
 import { useState } from 'react'
-import { ArrowLeft, ChevronDown, MessageCircle, Mail, Phone, FileText, ExternalLink, Send, CheckCircle2, Search, BookOpen, Zap, Shield } from 'lucide-react'
+import { ArrowLeft, ChevronDown, Mail, Phone, FileText, ExternalLink, Send, CheckCircle2, Search, BookOpen, Zap, Shield } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { ContactSupportForm } from '@/components/ContactSupport'
 
 interface FAQ { q: string; a: string }
 
 const CHANNELS = [
-  { icon: MessageCircle, label: 'Live Chat',     sub: 'Average reply: 2 min',  color: '#60a5fa', bg: 'rgba(96,165,250,0.1)',   cta: 'Start Chat',    available: true  },
   { icon: Mail,          label: 'Email Support', sub: 'Reply within 24 hours', color: '#60a5fa', bg: 'rgba(96,165,250,0.1)',   cta: 'Send Email',    available: true  },
   { icon: Phone,         label: 'Phone Support', sub: 'Mon–Fri 9am – 6pm WAT', color: '#f59e0b', bg: 'rgba(245,158,11,0.1)',  cta: 'Call Now',      available: false },
 ]
@@ -73,8 +72,10 @@ export function HelpSupport() {
     }))
     .filter(g => g.items.length > 0)
 
+  const scrollToForm = () => document.getElementById('contact-support')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+
   function handleChannel(label: string) {
-    if (label === 'Email Support') document.getElementById('contact-support')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (label === 'Email Support') scrollToForm()
   }
 
   return (
@@ -90,7 +91,7 @@ export function HelpSupport() {
       </div>
 
       {/* Support Channels */}
-      <div className="grid sm:grid-cols-3 gap-4" style={{ marginBottom: 24 }}>
+      <div className="grid sm:grid-cols-2 gap-4" style={{ marginBottom: 24 }}>
         {CHANNELS.map(ch => (
           <div key={ch.label} style={{ background: 'hsl(222 60% 5%)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, padding: '18px 16px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 10 }}>
             <div style={{ width: 38, height: 38, borderRadius: 10, background: ch.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

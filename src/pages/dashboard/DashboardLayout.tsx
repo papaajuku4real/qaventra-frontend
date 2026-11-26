@@ -10,7 +10,7 @@ import {
   Activity, Copy, Bot, Zap, Download, ArrowUpRight, Menu, LogOut,
   Bell, Settings, Building2, CandlestickChart, UserCircle2, KeyRound,
   SlidersHorizontal, ShieldCheck, CreditCard, Globe, Lock, HelpCircle,
-  ChevronRight as ChevronRight2, Clock, HeadphonesIcon, ShieldOff, Pickaxe, Landmark,
+  ChevronRight as ChevronRight2, Clock, HeadphonesIcon, ShieldOff, Pickaxe, Landmark, Radio,
 } from 'lucide-react'
 
 const NAV = [
@@ -43,6 +43,7 @@ const NAV = [
     section: 'MARKET INTELLIGENCE',
     items: [
       { label: 'Premium Signals',   path: '/dashboard/signals',           icon: Zap,       badge: { label: 'Premium', color: '#f59e0b', bg: 'rgba(245,158,11,0.15)' } },
+      { label: 'Signal',            path: '/dashboard/signal',            icon: Radio },
     ],
   },
   {
