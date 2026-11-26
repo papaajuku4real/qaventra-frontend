@@ -47,6 +47,19 @@ interface Tx {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
+// User plans, in the order shown on the dashboard. NONE until the admin picks one.
+const USER_PLANS = [
+  { value: 'NONE',         label: 'None'         },
+  { value: 'STARTER',      label: 'Starter'      },
+  { value: 'GROWTH',       label: 'Growth'       },
+  { value: 'PROFESSIONAL', label: 'Professional' },
+  { value: 'PRO',          label: 'Pro'          },
+  { value: 'ELITE',        label: 'Elite'        },
+]
+const planValue = (p?: string) => USER_PLANS.some(x => x.value === p) ? p! : 'NONE'
+const planLabel = (p?: string) => USER_PLANS.find(x => x.value === planValue(p))!.label
+
+
 const STATUS_STYLES: Record<string, { c: string; bg: string; border: string; label: string; dot: string }> = {
   ACTIVE:    { c: '#60a5fa', bg: 'rgba(96,165,250,0.1)',   border: 'rgba(96,165,250,0.3)',   label: 'Active',    dot: '#60a5fa' },
   PENDING:   { c: '#f59e0b', bg: 'rgba(245,158,11,0.1)',   border: 'rgba(245,158,11,0.3)',   label: 'Pending',   dot: '#f59e0b' },
@@ -846,10 +859,10 @@ export function AdminUserDetail() {
             </Field>
             <Field label="Plan">
               {editing
-                ? <select style={sel} value={form.plan ?? user.plan} onChange={e => setForm(f => ({ ...f, plan: e.target.value }))}>
-                    {['BASIC','SILVER','GOLD','PLATINUM'].map(p => <option key={p} value={p}>{p}</option>)}
+                ? <select style={sel} value={planValue(form.plan ?? user.plan)} onChange={e => setForm(f => ({ ...f, plan: e.target.value }))}>
+                    {USER_PLANS.map(p => <option key={p.value} value={p.value}>{p.label}</option>)}
                   </select>
-                : <p style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', padding: '8px 0' }}>{user.plan}</p>}
+                : <p style={{ fontSize: 13, fontWeight: 700, color: '#f59e0b', padding: '8px 0' }}>{planLabel(user.plan)}</p>}
             </Field>
           </div>
 

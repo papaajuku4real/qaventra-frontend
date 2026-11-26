@@ -783,9 +783,17 @@ export function DashboardHome() {
       {/* ── Active Plan Card ── */}
       <div className="mt-4">
         {(() => {
-          const plan = user?.plan ?? 'BASIC'
+          const PLAN_CONFIG: Record<string, { label: string; Icon: typeof Zap; c: string; rgb: string; cardBg: string; description: string }> = {
+            STARTER:      { label: 'Starter Plan',      Icon: Sparkles, c: '#93c5fd', rgb: '96,165,250',  cardBg: 'hsl(230 40% 7%)', description: 'Your Starter plan is active. A steady first step toward growing your portfolio.' },
+            GROWTH:       { label: 'Growth Plan',       Icon: TrendingUp, c: '#86efac', rgb: '74,222,128', cardBg: 'hsl(150 30% 6%)', description: 'Your Growth plan is active. Enjoy enhanced returns as your portfolio grows.' },
+            PROFESSIONAL: { label: 'Professional Plan', Icon: Zap,      c: '#c4b5fd', rgb: '167,139,250', cardBg: 'hsl(260 30% 7%)', description: 'Your Professional plan is active. Higher returns and priority support.' },
+            PRO:          { label: 'Pro Plan',          Icon: Shield,   c: '#fdba74', rgb: '251,146,60',  cardBg: 'hsl(25 35% 6%)',  description: 'Your Pro plan is active. Advanced returns and premium features unlocked.' },
+            ELITE:        { label: 'Elite Plan',        Icon: Crown,    c: '#fcd34d', rgb: '245,158,11',  cardBg: 'hsl(40 30% 5%)',  description: 'Your Elite plan is active. You have access to our highest returns and premium features.' },
+          }
+          const plan = user?.plan ?? 'NONE'
+          const cfg = PLAN_CONFIG[plan]
 
-          if (plan === 'BASIC') {
+          if (!cfg) {
             // No custom plan selected
             return (
               <Card style={{ padding: '1.25rem 1.5rem', background: 'hsl(222 40% 7%)', border: '1px solid rgba(255,255,255,0.07)' }}>
@@ -835,34 +843,17 @@ export function DashboardHome() {
             )
           }
 
-          // SILVER or GOLD plan
-          const isSilver = plan === 'SILVER'
-          const isGold   = plan === 'GOLD'
-
-          const planConfig = isSilver ? {
-            label:     'Silver Plan',
-            Icon:      Zap,
-            iconColor: '#60a5fa',
-            iconBg:    'rgba(96,165,250,0.15)',
-            badgeBg:   'rgba(96,165,250,0.12)',
-            badgeBorder: 'rgba(96,165,250,0.3)',
-            badgeColor: '#93c5fd',
-            cardBg:    'hsl(230 40% 7%)',
-            cardBorder: 'rgba(96,165,250,0.2)',
-            description: 'Your Silver plan is active. Enjoy enhanced daily returns and priority support.',
-            badge:     'ACTIVE',
-          } : {
-            label:     'Gold Plan',
-            Icon:      Crown,
-            iconColor: '#f59e0b',
-            iconBg:    'rgba(245,158,11,0.15)',
-            badgeBg:   'rgba(245,158,11,0.12)',
-            badgeBorder: 'rgba(245,158,11,0.35)',
-            badgeColor: '#fcd34d',
-            cardBg:    'hsl(40 30% 5%)',
-            cardBorder: 'rgba(245,158,11,0.25)',
-            description: 'Your Gold plan is active. You have access to our highest returns and premium features.',
-            badge:     'ACTIVE',
+          const planConfig = {
+            label:       cfg.label,
+            Icon:        cfg.Icon,
+            iconColor:   cfg.c,
+            iconBg:      `rgba(${cfg.rgb},0.15)`,
+            badgeBg:     `rgba(${cfg.rgb},0.12)`,
+            badgeBorder: `rgba(${cfg.rgb},0.3)`,
+            badgeColor:  cfg.c,
+            cardBg:      cfg.cardBg,
+            cardBorder:  `rgba(${cfg.rgb},0.22)`,
+            description: cfg.description,
           }
 
           const { label, Icon, iconColor, iconBg, badgeBg, badgeBorder, badgeColor, cardBg, cardBorder, description } = planConfig
