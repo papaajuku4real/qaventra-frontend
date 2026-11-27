@@ -2,7 +2,7 @@ import { usePlatformName } from '@/context/PlatformNameContext'
 import { useState } from 'react'
 import { ArrowLeft, ChevronDown, Mail, Phone, FileText, ExternalLink, Send, CheckCircle2, Search, BookOpen, Zap, Shield } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { ContactSupportForm } from '@/components/ContactSupport'
+import { openSupportEmail, SUPPORT_EMAIL } from '@/components/ContactSupport'
 
 interface FAQ { q: string; a: string }
 
@@ -72,10 +72,8 @@ export function HelpSupport() {
     }))
     .filter(g => g.items.length > 0)
 
-  const scrollToForm = () => document.getElementById('contact-support')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-
   function handleChannel(label: string) {
-    if (label === 'Email Support') scrollToForm()
+    if (label === 'Email Support') openSupportEmail('Support request')
   }
 
   return (
@@ -196,7 +194,18 @@ export function HelpSupport() {
         <p style={{ fontSize: 12, color: 'hsl(240 5% 52%)', marginBottom: 16 }}>Couldn't find your answer? We'll get back to you within 24 hours.</p>
         <div style={{ height: 1, background: 'rgba(255,255,255,0.06)', marginBottom: 20 }} />
 
-        <ContactSupportForm source="help" />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
+          <div>
+            <p style={{ fontSize: 12, color: 'hsl(240 5% 52%)', marginBottom: 2 }}>Email us at</p>
+            <p style={{ fontSize: 14, fontWeight: 600, color: 'hsl(40 6% 92%)' }}>{SUPPORT_EMAIL}</p>
+          </div>
+          <button
+            onClick={() => openSupportEmail('Support request')}
+            style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '10px 22px', borderRadius: 10, border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', background: 'linear-gradient(135deg,#fb923c,#ea580c)', color: '#050505' }}
+          >
+            <Send size={13} /> Contact Support
+          </button>
+        </div>
       </div>
     </div>
   )

@@ -1,12 +1,10 @@
-import { useState } from 'react'
 import { usePlatformName } from '@/context/PlatformNameContext'
-import { ContactSupportModal } from '@/components/ContactSupport'
+import { openSupportEmail } from '@/components/ContactSupport'
 import { ShieldX, Mail, AlertTriangle } from 'lucide-react'
 import { PageBackground } from '@/components/ui/PageBackground'
 
 export function BannedPage() {
   const { platformName } = usePlatformName()
-  const [supportOpen, setSupportOpen] = useState(false)
   return (
     <div
       style={{
@@ -171,7 +169,7 @@ export function BannedPage() {
         {/* Contact button */}
         <button
           type="button"
-          onClick={() => setSupportOpen(true)}
+          onClick={() => openSupportEmail('Account banned', 'Hello Support,\n\nMy registered email is: \n\n')}
           style={{
             display:        'inline-flex',
             alignItems:     'center',
@@ -216,9 +214,7 @@ export function BannedPage() {
         </p>
       </div>
 
-      {supportOpen && (
-        <ContactSupportModal source="banned" askIdentity defaultSubject="Account banned" onClose={() => setSupportOpen(false)} />
-      )}
+
     </div>
   )
 }
